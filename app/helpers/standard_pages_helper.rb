@@ -1,0 +1,2 @@
+module StandardPagesHelper
+end
