@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20181025095114) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "catagories", force: :cascade do |t|
+  create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -49,10 +49,10 @@ ActiveRecord::Schema.define(version: 20181025095114) do
   create_table "products", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.decimal  "price",       precision: 8, scale: 2
-    t.integer  "catagory_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.float    "price"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "users", force: :cascade do |t|

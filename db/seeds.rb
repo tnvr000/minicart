@@ -5,26 +5,26 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Catagory.delete_all
+Category.delete_all
 Product.delete_all
 User.delete_all
 Address.delete_all
 Order.delete_all
 BillingItem.delete_all
 
-catagories = []
-catagories << { name: "electronics" }
-catagories << { name: "men" }
-catagories << { name: "women" }
-catagories << { name: "baby & kids" }
-catagories << { name: "appliances" }
-catagories << { name: "home & furniture" }
-catagories << { name: "sports" }
-Catagory.create(catagories)
+categories = []
+categories << { name: "electronics" }
+categories << { name: "men" }
+categories << { name: "women" }
+categories << { name: "baby & kids" }
+categories << { name: "appliances" }
+categories << { name: "home & furniture" }
+categories << { name: "sports" }
+Category.create(categories)
 
-Catagory.all.each do |catagory|
+Category.all.each do |category|
 	20.times do
-		catagory.products.create(
+		category.products.create(
 			name: "#{Faker::Device.manufacturer} #{Faker::Device.model_name}",
 			description: Faker::Lorem.sentence(10),
 			price: Faker::Number.decimal(rand(3..5), 2),
