@@ -8,7 +8,7 @@ class NameValidator < ActiveModel::EachValidator
 end
 class Product < ActiveRecord::Base
 	belongs_to :category
-	validates :name, presence: true, name: true
+	validates :name, presence: true
 	validates :description, presence: true
 	validates :price, presence: true, numericality: {only_float: true}
 end
