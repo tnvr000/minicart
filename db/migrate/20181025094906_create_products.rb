@@ -4,7 +4,7 @@ class CreateProducts < ActiveRecord::Migration
     	t.string 			:name
     	t.text 				:description
     	t.decimal			:price, precision: 8, scale: 2
-    	t.intger			:catagory_id
+    	t.integer			:catagory_id
 
       t.timestamps null: false
     end
