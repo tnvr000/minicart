@@ -2,12 +2,12 @@ Rails.application.routes.draw do
 
   root 'standard_pages#index'
 
-  resources :category,   except: [:create, :update] do
+  resources :categories,   except: [:create, :update] do
     member do
-      patch 'update', to: 'category#update', as: :update, path: :edit
+      patch 'update', to: 'categories#update', as: :update, path: :edit
     end
     collection do
-      post 'create', to: 'category#create', as: :create, path: :new
+      post 'create', to: 'categories#create', as: :create, path: :new
     end
   end
 
