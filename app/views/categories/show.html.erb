@@ -1,1 +1,7 @@
-<%= @category.name %>
+<h2><%= @category.name %></h2>
+
+<div>
+	<%= will_paginate @products %>
+	<%= render partial: 'products', collection: @products %>
+	<%= will_paginate @products %>
+</div>
