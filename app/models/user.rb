@@ -16,6 +16,7 @@ class EmailValidator < ActiveModel::EachValidator
 end
 class User < ActiveRecord::Base
 	has_one :address, dependent: :destroy
+	has_one :cart, dependent: :destroy
 	has_many :orders, dependent: :destroy
 
 	validates :name, presence: true, name: true

@@ -2,6 +2,15 @@ Rails.application.routes.draw do
 
   root 'standard_pages#index'
 
+  resources :category,   except: [:create, :update] do
+    member do
+      patch 'update', to: 'category#update', as: :update, path: :edit
+    end
+    collection do
+      post 'create', to: 'category#create', as: :create, path: :new
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
