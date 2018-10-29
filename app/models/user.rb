@@ -14,12 +14,18 @@ class EmailValidator < ActiveModel::EachValidator
 		end
 	end
 end
+
 class User < ActiveRecord::Base
-	has_one :address, dependent: :destroy
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+
+  has_one :address, dependent: :destroy
 	has_one :cart, dependent: :destroy
 	has_many :orders, dependent: :destroy
 
 	validates :name, presence: true, name: true
 	validates :email, presence: true, email: true
-	validates :contact_no, presence: true, numericality: true  
+	validates :contact_no, presence: true, numericality: true 
 end

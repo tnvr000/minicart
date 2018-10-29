@@ -1,15 +1,11 @@
 Rails.application.routes.draw do
 
-  root 'standard_pages#index'
+  devise_for :users
+  root to: 'standard_pages#index'
 
-  resources :categories,   except: [:create, :update] do
-    member do
-      patch 'update', to: 'categories#update', as: :update, path: :edit
-    end
-    collection do
-      post 'create', to: 'categories#create', as: :create, path: :new
-    end
-  end
+  resources :categories
+  resources :products
+  resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
