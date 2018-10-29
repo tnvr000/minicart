@@ -16,3 +16,22 @@
 
  @import "bootstrap";
  
+.header {
+	align-content: center;
+	padding-top: 20px;
+	padding-bottom: 10px; 
+	height: 100%;
+	.header-brand {
+
+	}
+	.header-actions {
+		align-content: center;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-content: center;
+		.header-action {
+			min-width: 200px;
+		}
+	}
+}
