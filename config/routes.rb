@@ -3,12 +3,12 @@ Rails.application.routes.draw do
   root to: 'standard_pages#index'
   devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations'}
 
-  resources :categories
-  resources :products
-  resources :carts
-  resources :cart_items do 
+  resources :categories, only: :show
+  resources :products, only: [:show]
+  resources :carts, only: [:show, :update]
+  resources :cart_items, only: [:destroy] do 
     member do
-      post 'change_quantity/:dir', to: "cart_items#change_quantity", as: 'change_quantity'
+      patch 'change_quantity/:dir', to: "cart_items#change_quantity", as: 'change_quantity'
     end
   end
 
