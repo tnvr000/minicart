@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
   root to: 'standard_pages#index'
-  devise_for :users
+  devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations'}
 
   resources :categories
   resources :products
+  resources :carts
+  resources :cart_items
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,7 +1,7 @@
 <%#= object.first.category.name %>
 <% object.each do |product| %>
 	<div class="product-icon">
-		<span class="product-name"><%= product.name %></span>
+		<span class="product-name"><%= link_to product.name, product_path(product) %></span>
 		<span class="product-price">Rs. <%= product.price %></span>
 	</div>
 <% end %>

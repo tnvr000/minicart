@@ -24,8 +24,9 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 # user faker to generate realistic data
 gem 'faker'
-# use bootscript as the CSS library
+# use bootstrap 4 as the CSS library
 # gem 'bootstrap'
+# use bootscript 3 as the CSS library
 gem 'bootstrap-sass'
 
 gem 'will_paginate'
@@ -45,7 +46,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   # gem 'byebug'
   # Call 'binding.pry' anywhere in the code to stop execution and get a debugger console
-  gem 'pry'
+  gem 'pry-rails'
+  gem 'pry-byebug'
 end
 
 group :development do

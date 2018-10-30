@@ -1,0 +1,16 @@
+<% product = cart_item.product %>
+
+<div style="margin-bottom: 30px">
+
+	<div>
+		<%= link_to product.name, product_path(product) %>
+	</div>
+	<div>
+		<span>Price</span>	<%= product.price %>
+	</div>
+	<div>
+		<span>Quantity</span>
+		<%= cart_item.quantity %>
+	</div>
+	<%= link_to 'remove', cart_item_path(cart_item), method: :delete %>
+</div>
