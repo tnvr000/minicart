@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
 	has_one :cart, dependent: :destroy
 	has_many :orders, dependent: :destroy
 
-	validates :name, presence: true, name: true
-	validates :email, presence: true, email: true
+	# validates :name, presence: true, name: true
+	# validates :email, presence: true, email: true
 	validates :contact_no, presence: true, numericality: true 
 end

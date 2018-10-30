@@ -11,12 +11,11 @@
 		<%= render partial: 'layouts/header' %>
 		<%= render partial: 'layouts/navigation', locals: {object: @categories} %>
 
-		<p class="notice"><%= notice %></p>
-		<p class="alert"><%= alert %></p>
-
-
-		<%= flash.each do |key, message| %>
-			<%= content_tag :div, message, class: "alert alert-#{key}" %>
+		<% unless notice.blank? %>
+			<div class="alert alert-info"><%= notice %></div>
+		<% end %>
+		<% unless alert.blank? %>
+			<div class="alert alert-warning"><%= alert %></div>
 		<% end %>
 
 		<%= yield %>
