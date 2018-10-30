@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   resources :categories
   resources :products
   resources :carts
-  resources :cart_items
+  resources :cart_items do 
+    member do
+      post 'change_quantity/:dir', to: "cart_items#change_quantity", as: 'change_quantity'
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
