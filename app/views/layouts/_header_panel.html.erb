@@ -3,7 +3,10 @@
 		<%= current_user.name.split(" ")[0] %>
 	</span>
 	<%= link_to 'log out', destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
-	<span><%= link_to "Cart #{@no_of_cart_items}", cart_path(@cart) %></span>
+	<span>
+		<%= link_to "Cart", cart_items_path %>
+		<%= current_user.cart.cart_items.count %>
+		</span>
 <% else %>
 	<div class="row header-actions">
 		<div class="header-action">

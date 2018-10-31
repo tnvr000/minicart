@@ -5,8 +5,8 @@ Rails.application.routes.draw do
 
   resources :categories, only: :show
   resources :products, only: [:show]
-  resources :carts, only: [:show, :update]
-  resources :cart_items, only: [:destroy] do 
+  resources :carts, only: [:show, :update, :index]
+  resources :cart_items, only: [:index, :create, :update, :destroy] do 
     member do
       patch 'change_quantity/:dir', to: "cart_items#change_quantity", as: 'change_quantity'
     end

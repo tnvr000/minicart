@@ -1,12 +1,13 @@
-<%= form_for @cart do |form| %>
-	<%= form.hidden_field :product_id, value: @product.id %>
-	<h2><%= @product.name %></h2>
-	<h3>Price : <%= @product.price %></h3>
-	<p><%= @product.description %></p>
 
-	<%= form.submit 'Add to Cart' %>
+	<%= form_for @cart_item do |form| %>
+		<%= form.hidden_field :product_id, value: @product.id %>
+		<h2><%= @product.name %></h2>
+		<h3>Price : <%= @product.price %></h3>
+		<p><%= @product.description %></p>
 
-<% end %>
+		<%= form.submit 'Add to Cart' %>
+
+	<% end %>
 
 <div class="category">
 	<div class="products-icon-container">
