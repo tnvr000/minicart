@@ -3,10 +3,14 @@
 	<h3>Price : <%= @product.price %></h3>
 	<p><%= @product.description %></p>
 </div>
-<%= form_for @cart_item do |form| %>
-	<%= form.hidden_field :product_id, value: @product.id %>
+<% unless cart_item? @product.id %>
+	<%= form_for @cart_item do |form| %>
+		<%= form.hidden_field :product_id, value: @product.id %>
 
-	<%= form.submit 'Add to Cart' %>
+		<%= form.submit 'Add to Cart', class: "btn btn-success" %>
+	<% end %>
+<% else %>
+	<%= link_to 'Go to cart', cart_items_path, class: 'btn btn-info' %>
 <% end %>
 
 <div class="category">

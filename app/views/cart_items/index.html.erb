@@ -9,12 +9,16 @@
 		</div>
 		<div>
 			quantity
-			<%= link_to 'minus', change_quantity_cart_item_path(cart_item, 'minus'), method: :patch %>
+			<%= link_to '-', change_quantity_cart_item_path(cart_item, 'minus'), method: :patch, class: 'btn btn-primary' %>
 			<%= cart_item.quantity %>
-			<%= link_to 'plus', change_quantity_cart_item_path(cart_item, 'plus'), method: :patch %>
+			<%= link_to '+', change_quantity_cart_item_path(cart_item, 'plus'), method: :patch, class: 'btn btn-primary' %>
 		</div>
 		<div>
-			<%= link_to 'remove', cart_item_path(cart_item), method: :delete %>
+			<%= link_to 'remove', cart_item_path(cart_item), method: :delete, class: 'btn btn-warning' %>
+		</div>
+		<div>
+			<%= link_to 'Continue Shopping', root_path, class: 'btn btn-default' %>
+			<%= link_to 'Place order', "#", class: 'btn btn-warning' %>
 		</div>
 	<% end %>
 <% end %>
