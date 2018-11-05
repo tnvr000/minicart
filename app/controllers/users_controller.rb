@@ -4,7 +4,6 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.includes(:default_address).find_by(id: params[:id])
-  	@address = Address.new
   end
 
   def update

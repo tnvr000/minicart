@@ -9,7 +9,11 @@ Rails.application.routes.draw do
   root to: 'standard_pages#index'
   devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations'}
   resources :users, only: [:index, :show, :update]
-  resources :addresses, except: :show
+  resources :addresses, except: :show do
+    member do
+      patch 'make_default'
+    end
+  end
   resources :categories, only: :show
   resources :products, only: [:show]
   resources :cart_items, only: [:index, :create, :destroy] do 

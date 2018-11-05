@@ -1,0 +1,23 @@
+<% unless @user.default_address.blank? %>
+	<h1>
+		Default Addresses
+	</h1>
+	<div>
+		Plot/House no : <%= @user.default_address.plot %><br>
+		Lane/Street No. : <%= @user.default_address.lane %><br>
+		<% unless @user.default_address.landmark.blank? %>
+			Landmark : <%= @user.default_address.landmark %><br>
+		<% end %>
+		City : <%= @user.default_address.city %><br>
+		State : <%= @user.default_address.state %><br>
+		Pincode : <%= @user.default_address.pincode %>
+	</div>
+<% else %>
+	<h3>
+		There is no address set as default
+	</h3>
+<% end %>
+
+<div>
+	<%= link_to "View all Addresses", addresses_path %>
+</div>

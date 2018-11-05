@@ -1,0 +1,21 @@
+<%= link_to 'Add new address', new_address_path %>
+<% if @addresses.any? %>
+	<h1>Addresses</h1>
+	<% @addresses.each do |address| %>
+		<div>
+			Plot/House no : <%= address.plot %><br>
+			Lane/Street no :  <%= address.lane %><br>
+			<% unless address.landmark.blank? %>
+				Landmark : <%= address.landmark %><br>
+			<% end %>
+			City : <%= address.city %><br>
+			State : <%= address.state %><br>
+			Pincode : <%= address.pincode %><br>
+			<%= link_to 'delete', address_path(address), method: :delete %>
+			<% unless address.default? %>
+				<%= link_to 'Set as default', make_default_address_path(address), method: :patch %>
+			<% end %>
+			<br><br>
+		</div>
+	<% end %>
+<% end %>
