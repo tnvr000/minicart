@@ -16,6 +16,16 @@ class AddressesController < ApplicationController
 		end
 	end
 
+	def edit
+		@address = current_user.addresses.find(params[:id])
+	end
+
+	def update
+		address = current_user.addresses.find(params[:id])
+		address.update_attributes(address_params)
+		redirect_to addresses_url
+	end
+
 	def destroy
 		current_user.addresses.find(params[:id]).destroy
 		redirect_to addresses_url

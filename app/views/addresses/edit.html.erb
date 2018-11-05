@@ -1,0 +1,34 @@
+<%= form_for @address do |form| %>
+	<div>
+		<%= form.label :plot %>
+		<%= form.text_field :plot %>
+	</div>
+
+	<div>
+		<%= form.label :lane %>
+		<%= form.text_field :lane %>
+	</div>
+
+	<div>
+		<%= form.label :landmark %>
+		<%= form.text_field :landmark %>
+	</div>
+
+	<div>
+		<%= form.label :city %>
+		<%= form.text_field :city %>
+	</div>
+
+	<div>
+		<%= form.label :state %>
+		<%= form.text_field :state %>
+	</div>
+
+	<div>
+		<%= form.label :pincode %>
+		<%= form.text_field :pincode %>
+	</div>
+
+	<%= form.submit 'update', class: "btn btn-primary" %>
+	<%= link_to 'Cancel', addresses_path, class: "btn btn-primary" %>
+<% end %>

@@ -12,6 +12,7 @@
 			State : <%= address.state %><br>
 			Pincode : <%= address.pincode %><br>
 			<%= link_to 'delete', address_path(address), method: :delete %>
+			<%= link_to 'edit', edit_address_path(address) %>
 			<% unless address.default? %>
 				<%= link_to 'Set as default', make_default_address_path(address), method: :patch %>
 			<% end %>
