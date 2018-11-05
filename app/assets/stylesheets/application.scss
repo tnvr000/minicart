@@ -14,6 +14,11 @@
  *= require_self
  */
  @import "bootstrap";
+ $base: #eae6dA;
+ $primary: #ff5028;
+ /*$secondory: #*/
+ $complimentry: #28d8ff;
+ $footer: #dadeea;
  
 .header {
 	align-content: center;
@@ -34,3 +39,11 @@
 		}
 	}
 }
+
+// .navbar-minicart {
+// 	background-color: $primary;
+// 	border: 0;
+// 	color: $complimentry;
+// 	font-size: 20px;
+// 	min-height: 25px;
+// }
