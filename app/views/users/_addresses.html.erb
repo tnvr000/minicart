@@ -1,0 +1,17 @@
+<% if @user.addresses.any? %>
+	<h1>
+		Addresses
+	</h1>
+	<% @user.addresses.each do |address| %>
+		<div>
+			Plot/House no : <%= address.plot %><br>
+			Lane/Street No. : <%= address.lane %><br>
+			<% unless address.landmark.blank? %>
+				Landmark : <%= address.landmark %><br>
+			<% end %>
+			City : <%= address.city %><br>
+			State : <%= address.state %><br>
+			Pincode : <%= address.pincode %>
+		</div>
+	<% end %>
+<% end %>

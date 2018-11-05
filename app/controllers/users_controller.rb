@@ -3,9 +3,8 @@ class UsersController < ApplicationController
   end
 
   def show
-  	# @user = current_user
-  	@user = User.includes(:address).find_by(id: params[:id])
-  	@address = current_user.address
+  	@user = User.includes(:addresses).find_by(id: params[:id])
+  	@address = Address.new
   end
 
   def update
