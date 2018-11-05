@@ -20,9 +20,11 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  scope :default, -> { where('default = ?', true) }
 
-  has_many :addresses, dependent: :destroy
 	has_one :cart, dependent: :destroy
+	has_one :default_address, -> {where(addresses: {default: true})}, class_name: 'Address'
+  has_many :addresses, dependent: :destroy
 	has_many :orders, dependent: :destroy
 
 	# validates :name, presence: true, name: true

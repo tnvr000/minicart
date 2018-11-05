@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181031065806) do
+ActiveRecord::Schema.define(version: 20181105101236) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "plot"
@@ -21,8 +21,9 @@ ActiveRecord::Schema.define(version: 20181031065806) do
     t.string   "state"
     t.integer  "pincode"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "default",    default: false
   end
 
   create_table "billing_items", force: :cascade do |t|

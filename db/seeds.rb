@@ -59,19 +59,20 @@ User.create(users)
 puts "created all users(#{User.all.count})"
 
 User.all.each do |user|
-	a = user.create_address(
+	a = user.addresses.create(
 		plot: "plot no. #{Faker::Address.building_number}",
 		lane: Faker::Address.street_name,
 		landmark: Faker::Address.community,
 		city: Faker::Address.city,
 		state: Faker::Address.state,
-		pincode: Faker::Number.number(6)
+		pincode: Faker::Number.number(6),
+		default: true
 		)
 	puts "created address id #{a.id}"
 
 	5.times do
 		order = user.orders.create(
-			address_id: user.address.id
+			address_id: user.default_address.id
 		)
 		puts "created order id #{order.id}"
 		3.times do

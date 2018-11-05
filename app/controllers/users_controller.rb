@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   end
 
   def show
-  	@user = User.includes(:addresses).find_by(id: params[:id])
+  	@user = User.includes(:default_address).find_by(id: params[:id])
   	@address = Address.new
   end
 
