@@ -2,7 +2,7 @@ class AddressesController < ApplicationController
 	def index
 		@addresses = current_user.addresses
 	end
-	
+
 	def new
 		@address = Address.new
 	end
@@ -14,6 +14,17 @@ class AddressesController < ApplicationController
 		else
 			render 'new'
 		end
+	end
+
+	def destroy
+		current_user.addresses.find(params[:id]).destroy
+		redirect_to addresses_url
+	end
+
+	def make_default
+		address = current_user.addresses.find(params[:id])
+		address.make_default
+		redirect_to addresses_url
 	end
 
 	private
