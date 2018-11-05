@@ -1,0 +1,12 @@
+<div>
+	<% if @orders.any? %>
+		<% @orders.each do |order| %>
+			<div>
+				<%= link_to "Order id: #{order.id}", order_path(order)  %>
+			</div>
+			<div>
+				placed on : <%= order.created_at %>
+			</div>
+		<% end %>
+	<% end %>
+</div>

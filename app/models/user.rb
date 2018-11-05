@@ -27,5 +27,10 @@ class User < ActiveRecord::Base
 
 	# validates :name, presence: true, name: true
 	# validates :email, presence: true, email: true
-	validates :contact_no, presence: true, numericality: true 
+	validates :contact_no, presence: true, numericality: true
+
+	def self.cart_items user_id
+		cart_items = User.find(user_id).cart.cart_items.includes(:product)
+	end
+
 end

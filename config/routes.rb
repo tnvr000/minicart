@@ -12,12 +12,12 @@ Rails.application.routes.draw do
   resources :addresses, except: :show
   resources :categories, only: :show
   resources :products, only: [:show]
-  # resources :carts, only: [:show, :update, :index]
   resources :cart_items, only: [:index, :create, :destroy] do 
     member do
       patch 'change_quantity/:dir', to: "cart_items#change_quantity", as: 'change_quantity'
     end
   end
+  resources :orders
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

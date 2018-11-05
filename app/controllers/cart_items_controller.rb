@@ -1,6 +1,7 @@
 class CartItemsController < ApplicationController
 	def index
 		@cart_items = current_user.cart.cart_items.includes(:product)
+		@order = Order.new
 	end
 	def create
 		current_user.cart.cart_items.create(product_id: params[:cart_item][:product_id])
