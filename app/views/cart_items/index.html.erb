@@ -18,9 +18,7 @@
 		</div>
 	<% end %>
 	<div>
-		<%= link_to 'Continue Shopping', root_path, class: 'btn btn-default' %>
-		<%= form_for @order do |form| %>
-			<%= form.submit 'Place order', class: 'btn btn-deafult' %>
-		<% end %>
+		<%= link_to 'Continue Shopping', root_path, class: 'btn btn-primary' %>
+		<%= link_to 'Place Order', new_order_path, class: 'btn btn-primary' %>
 	</div>
 <% end %>

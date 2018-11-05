@@ -1,0 +1,18 @@
+<%= form_for @order do |f| %>
+	<div>
+		<%#= f.label :address_id %>
+		<%#= f.select :address_id, @addresses.collect { |address| [address.city, address.id] } %>
+	</div>
+	<div>
+		<%= f.label :address_id %>
+		<%= f.select :address_id do %>
+			<% @addresses.each do |address| %>
+				<option value="<%= address.id %>">
+					<%= address.city %> <%= address.pincode %>
+				</option>>
+			<% end %>
+		<% end %>
+	</div>
+
+	<%= f.submit 'Place order', class: "btn btn-primary" %>
+<% end %>

@@ -8,12 +8,16 @@ class OrdersController < ApplicationController
 	end
 
 	def new
+		@order = Order.new
+		@addresses = current_user.addresses
 	end
 
 	def create
-		order = current_user.orders.create address_id: current_user.address.id
+		order = current_user.orders.create address_id: params[:order][:address_id]
 		order.add_billing_items
+		flash[:success] = "Order placed"
 		redirect_to order_path(order)
+		# redirect_to :back
 	end
 
 	def show
