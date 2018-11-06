@@ -1,4 +1,4 @@
-<%= link_to 'Add new address', new_address_path %>
+<%= link_to 'Add new address', new_address_path, class: "btn btn-primary" %>
 <% if @addresses.any? %>
 	<h1>Addresses</h1>
 	<% @addresses.each do |address| %>
