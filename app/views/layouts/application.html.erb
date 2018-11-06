@@ -11,6 +11,12 @@
 		<%= render partial: 'layouts/header' %>
 		<%= render partial: 'layouts/navigation', locals: {object: @categories} %>
 
+		<% if flash.any? %>
+			<% flash.each do |key, message| %>
+				<%= content_tag :div, message, class: "alert alert-#{key}" %>
+			<% end %>
+		<% end %>
+
 		<% unless notice.blank? %>
 			<div class="alert alert-info"><%= notice %></div>
 		<% end %>

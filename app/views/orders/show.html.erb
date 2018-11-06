@@ -1,16 +1,36 @@
-<span>Order <%= @order.id %></span><br>
+<h2>Order <%= @order.id %></h2><br>
 
-<% if @order.billing_items.any? %>
+<div>
+	<% sum = 0 %>
+	<% @order.billing_items.zip(@order.products).each do |billing_item, product| %>
+		<% sum += billing_item.product_price %>
+		<div>
+			<span>
+				<%= link_to product.name, product_path(product) %>
+			</span><br>
+			<span>
+				Price : <%= billing_item.product_price %>
+			</span><br>
+			<span>
+				Quantity : <%= billing_item.quantity %>
+			</span><br><br>
+		</div>
+	<% end %>
+
+	<span>
+		Grand Total : <%= sum.round(2) %>
+	</span>
 	<div>
-		<% @order.billing_items.each do |billing_item| %>
-			<div>
-				<%= billing_item.product_price %>
-			</div>
-			<div>
-				<%= billing_item.quantity %>
-			</div>
+		<h3>Shipping Address</h3>
+		<%= @order.address.plot %>, 
+		<%= @order.address.lane %><br>
+		<% unless @order.address.landmark.blank? %>
+			<%= @order.address.landmark %>, 
 		<% end %>
+		<%= @order.address.city %><br>
+		<%= @order.address.state %>, 
+		<%= @order.address.pincode %>
 	</div>
-<% end %>
+</div>
 
-<%= link_to "Cancel Order", order_path(@order), method: :delete %>
+<%= link_to "Cancel Order", order_path(@order), method: :delete, class: "btn btn-primary" %>

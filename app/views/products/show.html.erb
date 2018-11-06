@@ -7,10 +7,10 @@
 	<%= form_for @cart_item do |form| %>
 		<%= form.hidden_field :product_id, value: @product.id %>
 
-		<%= form.submit 'Add to Cart', class: "btn btn-dafault" %>
+		<%= form.submit 'Add to Cart', class: "btn btn-primary" %>
 	<% end %>
 <% else %>
-	<%= link_to 'Go to cart', cart_items_path, class: 'btn btn-default' %>
+	<%= link_to 'Go to cart', cart_items_path, class: 'btn btn-primary' %>
 <% end %>
 
 <%= render partial: 'related_products', locals: {object: @related_products} %>

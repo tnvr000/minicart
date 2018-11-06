@@ -1,6 +1,6 @@
 class Order < ActiveRecord::Base
 	belongs_to :user
-	has_one :address
+	belongs_to :address
 	has_many :billing_items, dependent: :destroy
 	has_many :products, through: :billing_items
 
@@ -16,5 +16,9 @@ class Order < ActiveRecord::Base
 		BillingItem.create(bis)
 		cis.delete_all
 	end
+
+	# def address
+	# 	Address.joins(:orders).where(addresses: {id: self.address_id})
+	# end
 
 end

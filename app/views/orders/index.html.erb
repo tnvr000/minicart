@@ -1,12 +1,21 @@
 <div>
 	<% if @orders.any? %>
 		<% @orders.each do |order| %>
+			<%= link_to "Order id: #{order.id}", order_path(order), class: 'btn btn-primary' %><br>
+			Order placed on : <%= order.created_at.strftime("%A, %e, %B %Y") %>
+			<h4>Deliver 
+				<span title="Billing Items" data-content="hello" data-toggle="popover" data-trigger="focus">
+					<%= order.billing_items.size %> item
+				</span>
+			 to</h4>
 			<div>
-				<%= link_to "Order id: #{order.id}", order_path(order)  %>
+				<%= order.address.city %><br>
+				<%= order.address.state %><br>
+				<%= order.address.pincode %><br><br><br>
 			</div>
-			<div>
-				placed on : <%= order.created_at %>
-			</div>
+
 		<% end %>
+	<% else %>
+		<h2>You have no actice orders</h2>
 	<% end %>
 </div>

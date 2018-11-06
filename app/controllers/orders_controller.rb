@@ -1,10 +1,10 @@
 class OrdersController < ApplicationController
 	def index
-		@orders = current_user.orders
+		@orders = current_user.orders.includes(:address, billing_items: :product)
 	end
 
 	def show
-		@order = Order.find(params[:id]).includes(:billing_items)
+		@order = Order.find(params[:id]).includes(:address, billing_items: :products)
 	end
 
 	def new
@@ -17,7 +17,6 @@ class OrdersController < ApplicationController
 		order.add_billing_items
 		flash[:success] = "Order placed"
 		redirect_to order_path(order)
-		# redirect_to :back
 	end
 
 	def show

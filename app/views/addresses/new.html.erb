@@ -1,6 +1,6 @@
 <%= form_for @address do |form| %>
 	<div>
-		<%= form.label :plot, as: 'Plot/house no' %>
+		<%= form.label :plot %>
 		<%= form.text_field :plot %>
 	</div>
 
@@ -28,7 +28,6 @@
 		<%= form.label :pincode %>
 		<%= form.text_field :pincode %>
 	</div>
-	<%= form.submit 'Add' %>
+	<%= form.submit 'Add', class: "btn btn-primary" %>
+	<%= link_to 'Back', addresses_path, class: "btn btn-primary" %>
 <% end %>
-
-<%= link_to 'Back', addresses_path %>
