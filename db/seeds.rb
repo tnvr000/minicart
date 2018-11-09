@@ -1,16 +1,17 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+# # This file should contain all the record creation needed to seed the database with its default values.
+# # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+# #
+# # Examples:
+# #
+# #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+# #   Mayor.create(name: 'Emanuel', city: cities.first)
 # Category.delete_all
 # Product.delete_all
 # User.delete_all
 # Address.delete_all
 # Order.delete_all
 # BillingItem.delete_all
+
 
 categories = []
 categories << { name: "electronics" }
@@ -24,6 +25,8 @@ Category.create(categories)
 puts "created all categories"
 
 Category.all.each do |category|
+	thumb = File.open(File.join(Rails.root, 'public/system/rails.png'))
+	img = File.open(File.join(Rails.root, 'public/system/avatar02.png'))
 	20.times do
 		pr = category.products.create(
 			name: "#{Faker::Device.manufacturer} #{Faker::Device.model_name}",
@@ -31,6 +34,10 @@ Category.all.each do |category|
 			price: Faker::Number.decimal(rand(3..5), 2)
 			)
 		puts "create product id: #{pr.id} for category: #{pr.category.name}"
+		pr.images.create(image: thumb, default: true)
+		puts "create thumb for product id #{pr.id}"
+		pr.images.create(image: thumb, default: true)
+		puts "create image for product id #{pr.id}"
 	end
 end
 

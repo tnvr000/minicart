@@ -14,36 +14,100 @@
  *= require_self
  */
  @import "bootstrap";
- $base: #eae6dA;
- $primary: #ff5028;
- /*$secondory: #*/
- $complimentry: #28d8ff;
- $footer: #dadeea;
+ $base: #f8efaa;
+ $primary: #e37769;
+ $secondory: #efc849;
+ $complimentry: #65634a;
+ $footer: #f5d87e;
+ $padding-top: 20px;
+ $padding-right: 10px;
+ $border-width: 5px;
+
+ html,
+ body {
+ 	background-color: $base;
+ 	color: $primary;
+ }
  
 .header {
-	align-content: center;
-	padding-top: 20px;
-	padding-bottom: 10px; 
-	height: 100%;
+	// border: 1px solid black;
+	// align-content: center;
+	background-color: $primary;
+	color: $complimentry;
+	font-size: 35px;
+	font-weight: bold;
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+	a:hover {
+		color: inherit;
+	}
+	// padding-top: 20px;
+	// padding-bottom: 10px; 
+	// height: 100%;
 	.header-brand {
-
 	}
 	.header-actions {
-		align-content: center;
-		display: flex;
-		flex-direction: row;
-		justify-content: space-around;
-		align-content: center;
+		// align-content: center;
+		// display: flex;
+		// flex-direction: row;
+		// justify-content: space-around;
+		// align-content: center;
 		.header-action {
-			min-width: 200px;
+			// min-width: 200px;
 		}
 	}
 }
 
-// .navbar-minicart {
-// 	background-color: $primary;
-// 	border: 0;
-// 	color: $complimentry;
-// 	font-size: 20px;
-// 	min-height: 25px;
-// }
+.navbar-minicart {
+	background-color: $secondory;
+	border: 0;
+	color: $complimentry;
+	font-size: 17px;
+	min-height: 0;
+	.navbar-nav {
+		li {
+			box-sizing: border-box;
+			a {
+				color: $complimentry;
+				padding: $padding-top $padding-right;
+				line-height: 0;
+				box-sizing: border-box;
+				&:hover {
+					box-sizing: border-box;
+					// border-bottom: $border-width solid $complimentry;
+					// padding-bottom: $padding-top - $border-width;
+					// padding-left: $padding-right - $border-width;
+					// border-left: $border-width solid $complimentry;
+					background-color: $complimentry;
+					color: $secondory;
+				}
+			}
+		}
+		.active > a {
+			background-color: $complimentry;
+			color: $secondory;
+			&:hover {
+				background-color: $complimentry;
+				color: $secondory;
+			}
+		}
+	}
+	.navbar-toggle {
+		border-color: $complimentry;
+		.icon-bar {
+			background-color: $complimentry;
+		}
+		&:hover, &:focus {
+			background-color: $complimentry;
+			.icon-bar {
+				background-color: $secondory;
+			}
+		}
+	}
+}
+
+.footer {
+	background-color: $footer;
+}

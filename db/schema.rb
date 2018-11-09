@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181105101236) do
+ActiveRecord::Schema.define(version: 20181109080011) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "plot"
@@ -54,6 +54,20 @@ ActiveRecord::Schema.define(version: 20181105101236) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "images", force: :cascade do |t|
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size",    limit: 8
+    t.datetime "image_updated_at"
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
+    t.boolean  "default",                      default: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+  end
+
+  add_index "images", ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id"
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"

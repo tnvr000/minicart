@@ -1,9 +1,10 @@
 <div>
+	<%= image_tag @thumb.image.url(:medium) unless @thumb.nil? %>
 	<h2><%= @product.name %></h2>
 	<h3>Price : <%= @product.price %></h3>
 	<p><%= @product.description %></p>
 </div>
-<% unless cart_item? @product.id %>
+<% unless self.cart_item? @product.id %>
 	<%= form_for @cart_item do |form| %>
 		<%= form.hidden_field :product_id, value: @product.id %>
 
@@ -12,5 +13,6 @@
 <% else %>
 	<%= link_to 'Go to cart', cart_items_path, class: 'btn btn-primary' %>
 <% end %>
+<%= link_to "View all images", product_images_path(@product), class: "btn btn-primary" %>
 
 <%= render partial: 'related_products', locals: {object: @related_products} %>

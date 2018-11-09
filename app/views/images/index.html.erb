@@ -1,0 +1,13 @@
+<% @images.each do |image| %>
+	<div>
+		<%= image_tag image.image.url(:thumb) %><br><br>
+		<%= link_to "Delete", image_path(image), method: :delete, class: "btn btn-primary" %>
+		<% unless image.default? %>
+			<%= link_to "Make Thumb", make_thumb_image_path(image), method: :patch, class: "btn btn-primary" %>
+		<% end %>
+		<br><br><br>
+	</div>	
+<% end %>
+<br>
+<%= link_to "Back", product_path(@images.first.imageable), class: "btn btn-primary" %>
+<%= link_to "Add New images", new_product_image_path(@images.first.imageable), class: "btn btn-primary" %>

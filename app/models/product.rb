@@ -7,10 +7,13 @@ class NameValidator < ActiveModel::EachValidator
 	end
 end
 class Product < ActiveRecord::Base
+	belongs_to :category
+	has_many :images, as: :imageable, class_name: "Image"
+	has_one :thumb, -> {where(images: {default: true})}, class_name: "Image", foreign_key: "imageable_id"
+
 	scope :of_category, ->(category_id) {where("category_id = ?", category_id)}
 	scope :of_similar_price, ->(price) {where("price > ? and price < ?", price - price * 0.25, price + price * 0.25)}
 	scope :excluding, ->(product_id) {where('id != ?', product_id)}
-	belongs_to :category
 
 	validates :name, presence: true
 	validates :description, presence: true

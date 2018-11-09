@@ -15,13 +15,20 @@ Rails.application.routes.draw do
     end
   end
   resources :categories, only: :show
-  resources :products, only: [:show]
+  resources :products do 
+    resources :images, shallow: true do
+      member do
+        patch 'make_thumb'
+      end
+    end
+  end
   resources :cart_items, only: [:index, :create, :destroy] do 
     member do
       patch 'change_quantity/:dir', to: "cart_items#change_quantity", as: 'change_quantity'
     end
   end
   resources :orders
+  # resources :images
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
