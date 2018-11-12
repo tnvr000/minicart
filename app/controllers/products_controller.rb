@@ -15,10 +15,12 @@ class ProductsController < ApplicationController
 	end
 
 	def show
+		# binding.pry
 		@product = Product.find(params[:id])
 		@thumb = @product.thumb
 		@related_products = @product.related_products
-		@cart_item = current_user.cart.cart_items.build
+		# @cart_item = current_user.cart.cart_items.build
+		@cart_item = user_signed_in? ? current_user.cart.cart_items.build : CartItem.new
 	end
 
 	def edit

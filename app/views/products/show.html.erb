@@ -1,10 +1,15 @@
-<div>
-	<%= image_tag @thumb.image.url(:medium) unless @thumb.nil? %>
-	<h2><%= @product.name %></h2>
-	<h3>Price : <%= @product.price %></h3>
-	<p><%= @product.description %></p>
+<div class="row product-details-container">
+	<div class="col-sm-7">
+		<%= image_tag @thumb.image.url(:large) unless @thumb.nil? %>
+	</div>
+	<div class="col-sm-5 product-details">
+		<span class="product-name"><%= @product.name %></span>
+		<span class="product-price">Price : <%= @product.price %></span>
+		<span class="product-description"><%= @product.description %></span>
+	</div>
 </div>
 <% unless self.cart_item? @product.id %>
+	<%#= render partial: "add_to_cart_button" %>
 	<%= form_for @cart_item do |form| %>
 		<%= form.hidden_field :product_id, value: @product.id %>
 
