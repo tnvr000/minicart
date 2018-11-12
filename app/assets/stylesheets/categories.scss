@@ -1,3 +1,40 @@
 // Place all the styles related to the categories controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap";
+@import "variables";
+
+.products-list-container {
+	display: flex;
+	flex-direction: column;
+	width: 80%;
+	margin: auto;
+	.product-container {
+		margin-bottom:25px; 
+		.product-image-container {
+			display: flex;
+			justify-content: space-around;
+			.product-image {
+				height:100%;
+				width:100%;
+				max-width: 150px;
+				min-width: 100px;
+			}
+		}
+		.product-details-container {
+			.product-name {
+				color: $primary;
+				font: bold 30px $font-family;	
+			}
+			.product-price {
+				color: $complementary;
+				font: 20px $font-family;
+
+			}
+			.product-description {
+				color: $complementary;
+				font: 17px $font-family;
+			}
+		}
+	}
+}

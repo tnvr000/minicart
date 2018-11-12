@@ -14,11 +14,7 @@
  *= require_self
  */
  @import "bootstrap";
- $base: #f8efaa;
- $primary: #e37769;
- $secondory: #efc849;
- $complimentry: #65634a;
- $footer: #f5d87e;
+ @import "variables";
  $padding-top: 20px;
  $padding-right: 10px;
  $border-width: 5px;
@@ -30,10 +26,8 @@
  }
  
 .header {
-	// border: 1px solid black;
-	// align-content: center;
 	background-color: $primary;
-	color: $complimentry;
+	color: $complementary;
 	font-size: 35px;
 	font-weight: bold;
 	a {
@@ -43,9 +37,6 @@
 	a:hover {
 		color: inherit;
 	}
-	// padding-top: 20px;
-	// padding-bottom: 10px; 
-	// height: 100%;
 	.header-brand {
 	}
 	.header-actions {
@@ -61,48 +52,48 @@
 }
 
 .navbar-minicart {
-	background-color: $secondory;
+	background-color: $secondary;
 	border: 0;
-	color: $complimentry;
+	color: $complementary;
 	font-size: 17px;
 	min-height: 0;
 	.navbar-nav {
 		li {
 			box-sizing: border-box;
 			a {
-				color: $complimentry;
+				color: $complementary;
 				padding: $padding-top $padding-right;
 				line-height: 0;
 				box-sizing: border-box;
 				&:hover {
 					box-sizing: border-box;
-					// border-bottom: $border-width solid $complimentry;
+					// border-bottom: $border-width solid $complementary;
 					// padding-bottom: $padding-top - $border-width;
 					// padding-left: $padding-right - $border-width;
-					// border-left: $border-width solid $complimentry;
-					background-color: $complimentry;
-					color: $secondory;
+					// border-left: $border-width solid $complementary;
+					background-color: $complementary;
+					color: $secondary;
 				}
 			}
 		}
 		.active > a {
-			background-color: $complimentry;
-			color: $secondory;
+			background-color: $complementary;
+			color: $secondary;
 			&:hover {
-				background-color: $complimentry;
-				color: $secondory;
+				background-color: $complementary;
+				color: $secondary;
 			}
 		}
 	}
 	.navbar-toggle {
-		border-color: $complimentry;
+		border-color: $complementary;
 		.icon-bar {
-			background-color: $complimentry;
+			background-color: $complementary;
 		}
 		&:hover, &:focus {
-			background-color: $complimentry;
+			background-color: $complementary;
 			.icon-bar {
-				background-color: $secondory;
+				background-color: $secondary;
 			}
 		}
 	}
@@ -111,3 +102,4 @@
 .footer {
 	background-color: $footer;
 }
+

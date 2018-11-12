@@ -1,5 +1,20 @@
-<div>
-	 <h2><%= link_to products.name, product_path(products) %></h2>
-	 <h4>Rs. <%= products.price %></h4>
-	 <p><%= products.description %></p>
+<div class="products-list-container">
+	<% @products.each do |product| %>
+		<div class="row product-container">
+			<div class="col-sm-3 product-image-container">
+				<%= image_tag product.thumb.image.url, class: "product-image" %>
+			</div>
+			<div class="col-sm-9 product-details-container">
+				<span class="product-name">
+					<%= product.name %><br>
+				</span>
+				<span class="product-price">
+					Rs. <%= product.price %><br>
+				</span>
+				<span class="product-description">
+					<%= product.description %><br>
+				</span>
+			</div>
+		</div>
+	<% end %>
 </div>

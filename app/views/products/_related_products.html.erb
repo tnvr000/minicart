@@ -2,12 +2,15 @@
 	<div class="products-icon-container">
 		<% object.each do |product| %>
 			<div class="product-icon">
-				<span class="product-name">
-					<%= link_to product.name, product_path(product) %>
-				</span>
-				<span class="product-price">
-					<%= product.price %>
-				</span>
+				<%= image_tag product.thumb.image.url, class: "product-image" %>
+				<div class="product-details">
+					<span class="product-name">
+						<%= link_to product.name, product_path(product) %>
+					</span>
+					<span class="product-price">
+						Rs. <%= product.price %>
+					</span>
+				</div>
 			</div>
 		<% end %>
 	</div>

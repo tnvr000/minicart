@@ -4,7 +4,7 @@ class StandardPagesController < ApplicationController
 		@products = {}
 		# binding.pry
 		@categories.each do |category|
-			@products[category.name] = category.products.limit(5)
+			@products[category.name] = category.products.limit(10)
 		end
 	end
 end
