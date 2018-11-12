@@ -8,7 +8,6 @@ class CartItemsController < ApplicationController
 	end
 
 	def create
-		binding.pry
 		current_user.cart.cart_items.create(cart_item_params)
 		redirect_to cart_items_url
 	end
@@ -45,12 +44,4 @@ class CartItemsController < ApplicationController
 			quantity + 1
 		end
 	end
-
-	def store_user_location!
-    store_location_for(:user, request.referer)
-  end
-
-  def after_sign_in_path_for resource
-    stored_location_for(resource) || super
-  end
 end
