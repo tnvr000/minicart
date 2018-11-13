@@ -1,0 +1,3 @@
+$("#product<%= @cart_item.product_id %>").remove()
+quantity = $("#cart_items_quantity").html()
+$("#cart_items_quantity").html(quantity - 1)

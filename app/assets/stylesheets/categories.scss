@@ -24,7 +24,13 @@
 		.product-details-container {
 			.product-name {
 				color: $primary;
-				font: bold 30px $font-family;	
+				font: bold 30px $font-family;
+				a {
+					color:$primary;
+					&:hover {
+						text-decoration: none;
+					}
+				}
 			}
 			.product-price {
 				color: $complementary;

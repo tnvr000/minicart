@@ -8,23 +8,33 @@ class CartItemsController < ApplicationController
 	end
 
 	def create
-		current_user.cart.cart_items.create(cart_item_params)
+		@cart_item = current_user.cart.cart_items.build(cart_item_params)
+		@cart_item.save
 		redirect_to cart_items_url
 	end
 
 	def destroy
-		cart_item = CartItem.find(params[:id])
-		cart_item.delete
-		redirect_to :back
+		@cart_item = CartItem.find(params[:id])
+		@cart_item.delete
+		respond_to do |format|
+			format.html { redirect_to cart_items_path }
+			format.js { render layout: false }
+		end
 	end
 
 	def change_quantity
-		cart_item = current_user.cart.cart_items.with_id(params[:id])
-		unless cart_item.nil?
-			quantity = update_qunatity(cart_item, params[:dir])
-			cart_item.update_attribute(:quantity, quantity)
+		# binding.pry
+		@cart_item = current_user.cart.cart_items.find_by(id: params[:id])
+		unless @cart_item.nil?
+			quantity = update_qunatity(@cart_item)
+			@cart_item.update_attribute(:quantity, quantity)
+			@cart_item.quantity = quantity
 		end
-		redirect_to :back
+		respond_to do |format|
+			format.html {redirect_to cart_items_path}
+			format.js {render layout: false}
+		end
+		# redirect_to :back
 	end
 
 	private
@@ -32,9 +42,9 @@ class CartItemsController < ApplicationController
 		params.require(:cart_item).permit(:product_id)
 	end
 
-	def update_qunatity cart_item, direction
+	def update_qunatity cart_item
 		quantity = cart_item.quantity
-		if direction == 'minus'
+		if params[:dir] == 'minus'
 			if quantity > 1
 				quantity - 1
 			else

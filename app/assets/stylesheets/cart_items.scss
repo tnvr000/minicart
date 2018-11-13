@@ -1,3 +1,76 @@
 // Place all the styles related to the cart_items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "variables";
+
+.product-operation-container {
+	padding: 5px 0;
+	.product-quantity-operation {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-items: center;
+		.btn-change-quantity {
+			border-radius: 50%;
+			background-color: $secondary;
+			color: $primary;
+			box-sizing: border-box;
+			width: auto;
+			font: bold 17px $font-family;
+			border: 3px solid $secondary;
+			&:hover {
+				border: 3px solid $primary;
+				box-sizing: border-box;
+			}
+			&:active {
+				background-color: $primary;
+				color: $primary;
+			}
+		}
+		.product-quantity {
+			width: 40px;
+			padding: 5px 0;
+			text-align: center;
+			font: bold 20px $font-family;
+			border: 1px solid $primary;
+		}
+	}
+	.product-remove-operation {
+		.btn-remove {
+			background-color: $secondary;
+			color: $primary;
+			font: bold 17px $font-family;
+			border: 3px solid $secondary;
+			&:hover {
+				border-color: $primary;
+			}
+			&:active {
+				background-color: $primary;
+				color: $primary;
+			}
+		}
+	}
+}
+
+.btn-action {
+	display: inline-block;
+	background-color: $secondary;
+	color: $primary;
+	padding: 6px 12px;
+	border-radius: 4px;
+	font: bold 17px $font-family;
+	border: 3px solid $secondary;
+	&:hover {
+		color:$primary;
+		border-color: $primary;
+		text-decoration: none;
+	}
+	&:active {
+		color:$primary;
+		background-color: $primary;
+	}
+	&:visited {
+		color: $primary;
+		text-decoration: none;
+	}
+}

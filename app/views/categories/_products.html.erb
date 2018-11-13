@@ -6,7 +6,7 @@
 			</div>
 			<div class="col-sm-9 product-details-container">
 				<span class="product-name">
-					<%= product.name %><br>
+					<%= link_to product.name, product_path(product) %><br>
 				</span>
 				<span class="product-price">
 					Rs. <%= product.price %><br>

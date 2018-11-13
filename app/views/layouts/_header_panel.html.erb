@@ -4,8 +4,8 @@
 	</span>
 	<%= link_to 'log out', destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
 	<span>
-		<%= link_to "Cart  #{current_user.cart.cart_items.count}", cart_items_path, class: "btn btn-primary" %>
-		<%#= current_user.cart.cart_items.count %>
+		<%= link_to "Cart", cart_items_path, class: "btn btn-primary" %>
+		<span id="cart_items_quantity"><%= current_user.cart.cart_items.count %></span>
 	</span>
 	<span>
 		<%= link_to "Orders", orders_path, class: "btn btn-primary" %>

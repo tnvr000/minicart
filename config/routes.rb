@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   end
   resources :cart_items, only: [:index, :create, :destroy] do 
     member do
-      patch 'change_quantity/:dir', to: "cart_items#change_quantity", as: 'change_quantity'
+      put 'change_quantity/:dir', to: "cart_items#change_quantity", as: 'change_quantity'
     end
   end
   resources :orders
