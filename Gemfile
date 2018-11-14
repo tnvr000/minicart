@@ -38,6 +38,7 @@ gem 'paperclip', '6.1.0'
 gem 'jquery-datatables-rails', '3.4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
 # Use Unicorn as the app server
 # gem 'unicorn'
