@@ -29,6 +29,10 @@ class ProductsController < ApplicationController
 		redirect_to :back
 	end
 
+	def products_tables
+		@products = Product.all
+	end
+
 	private
 	def product_params
 		params.require(:product).permit(:name, :price, :category_id, :description)

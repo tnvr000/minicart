@@ -6,16 +6,16 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 img1 = File.open(File.join(Rails.root, 'public/system/default/avatar01.png'))
-img2 = File.open(File.join(Rails.root, 'public/system/default/avatar02.png'))
-img3 = File.open(File.join(Rails.root, 'public/system/default/avatar03.png'))
-img4 = File.open(File.join(Rails.root, 'public/system/default/avatar04.png'))
-img5 = File.open(File.join(Rails.root, 'public/system/default/rails.png'))
+# img2 = File.open(File.join(Rails.root, 'public/system/default/avatar02.png'))
+# img3 = File.open(File.join(Rails.root, 'public/system/default/avatar03.png'))
+# img4 = File.open(File.join(Rails.root, 'public/system/default/avatar04.png'))
+# img5 = File.open(File.join(Rails.root, 'public/system/default/rails.png'))
 images = []
-images << {image: img1, default: false}
-images << {image: img2, default: false}
-images << {image: img3, default: false}
-images << {image: img4, default: false}
-images << {image: img5, default: false}
+images << {image: img1, default: true}
+# images << {image: img2, default: false}
+# images << {image: img3, default: false}
+# images << {image: img4, default: false}
+# images << {image: img5, default: false}
 
 categories = []
 categories << { name: "electronics" }
@@ -105,12 +105,10 @@ User.all.each do |user|
 end
 
 Product.all.each do |product|
-	d = rand(0..4)
-	print "#{d} "
-	images[d][:default] = true
+	# images[rand(0..4)][:default] = true
 	images.each do |image|
 		img = product.images.create(image)
 		puts "Created image #{img.id} for product id #{product.id}"
 	end
-	images[d][:default] = false
+	# images[d][:default] = false
 end

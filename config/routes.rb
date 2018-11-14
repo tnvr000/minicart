@@ -1,27 +1,33 @@
 Rails.application.routes.draw do
 
   get 'users/index'
-
   get 'users/show'
-
   get 'users/update'
-
+  
   root to: 'standard_pages#index'
+
   devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations'}
   resources :users, only: [:index, :show, :update]
+  
   resources :addresses, except: :show do
     member do
       patch 'make_default'
     end
   end
+  
   resources :categories, only: :show
-  resources :products do 
+  
+  resources :products do
     resources :images, shallow: true do
       member do
         patch 'make_thumb'
       end
     end
+    collection do
+      get 'products_tables', as: "table_of"
+    end
   end
+  
   resources :cart_items, only: [:index, :create, :destroy] do 
     member do
       put 'change_quantity/:dir', to: "cart_items#change_quantity", as: 'change_quantity'
