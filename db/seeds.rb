@@ -1,17 +1,21 @@
-# # This file should contain all the record creation needed to seed the database with its default values.
-# # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-# #
-# # Examples:
-# #
-# #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-# #   Mayor.create(name: 'Emanuel', city: cities.first)
-# Category.delete_all
-# Product.delete_all
-# User.delete_all
-# Address.delete_all
-# Order.delete_all
-# BillingItem.delete_all
-
+# This file should contain all the record creation needed to seed the database with its default values.
+# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+#
+# Examples:
+#
+#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+#   Mayor.create(name: 'Emanuel', city: cities.first)
+img1 = File.open(File.join(Rails.root, 'public/system/default/avatar01.png'))
+img2 = File.open(File.join(Rails.root, 'public/system/default/avatar02.png'))
+img3 = File.open(File.join(Rails.root, 'public/system/default/avatar03.png'))
+img4 = File.open(File.join(Rails.root, 'public/system/default/avatar04.png'))
+img5 = File.open(File.join(Rails.root, 'public/system/default/rails.png'))
+images = []
+images << {image: img1, default: false}
+images << {image: img2, default: false}
+images << {image: img3, default: false}
+images << {image: img4, default: false}
+images << {image: img5, default: false}
 
 categories = []
 categories << { name: "electronics" }
@@ -25,19 +29,14 @@ Category.create(categories)
 puts "created all categories"
 
 Category.all.each do |category|
-	thumb = File.open(File.join(Rails.root, 'public/system/rails.png'))
-	img = File.open(File.join(Rails.root, 'public/system/avatar02.png'))
+	
 	20.times do
 		pr = category.products.create(
 			name: "#{Faker::Device.manufacturer} #{Faker::Device.model_name}",
 			description: Faker::Lorem.sentence(20),
-			price: Faker::Number.decimal(rand(3..5), 2)
+			price: Faker::Number.decimal(rand(3..4), 2)
 			)
 		puts "create product id: #{pr.id} for category: #{pr.category.name}"
-		pr.images.create(image: thumb, default: true)
-		puts "create thumb for product id #{pr.id}"
-		pr.images.create(image: thumb, default: true)
-		puts "create image for product id #{pr.id}"
 	end
 end
 
@@ -103,4 +102,15 @@ User.all.each do |user|
 		)
 		puts "created cart item id: #{ci.id}"
 	end
+end
+
+Product.all.each do |product|
+	d = rand(0..4)
+	print "#{d} "
+	images[d][:default] = true
+	images.each do |image|
+		img = product.images.create(image)
+		puts "Created image #{img.id} for product id #{product.id}"
+	end
+	images[d][:default] = false
 end
