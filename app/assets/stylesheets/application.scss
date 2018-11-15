@@ -99,7 +99,32 @@
 	}
 }
 
+.button {
+	display: inline-block;
+	background-color: $base;
+	color: $primary;
+	padding: 6px 12px;
+	border-radius: 4px;
+	font: bold 17px $font-family;
+	border: 3px solid $secondary;
+	&:hover {
+		color:$primary;
+		border-color: $primary;
+		text-decoration: none;
+	}
+	&:active {
+		color:$primary;
+		background-color: $primary;
+	}
+	&:visited {
+		color: $primary;
+		text-decoration: none;
+	}
+}
+
 .footer {
 	background-color: $footer;
 }
+
+
 
