@@ -6,6 +6,6 @@ $('document').ready () ->
 	console.log("Ready")
 	$('#products').dataTable({
 		"pagingType": "full_numbers",
-		"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-		"paging": false
+		"lengthMenu": [[25, 50, -1], [25, 50, "All"]],
+		"scrollY": "250px"
 	});
