@@ -7,6 +7,7 @@ $('document').ready () ->
 	$('#products').dataTable({
 		"bProcessing" : true,
 		"sAjaxSource" : "products_tables.json",
+		"autoWidth" : false,
 		"aoColumns" : [
 			{"mData" : "name"},
 			{"mData" : "price"},
