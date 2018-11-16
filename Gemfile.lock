@@ -102,6 +102,7 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     multi_json (1.13.1)
+    nested_form (0.3.2)
     nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
     nokogiri (1.8.5-x64-mingw32)
@@ -216,6 +217,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-datatables-rails (= 3.1.1)
   jquery-rails (= 4.3.3)
+  nested_form
   paperclip (= 6.1.0)
   pry-byebug (= 3.6.0)
   pry-rails (= 0.3.6)

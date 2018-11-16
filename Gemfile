@@ -36,6 +36,8 @@ gem 'devise', '4.5.0'
 
 gem 'paperclip', '6.1.0'
 
+gem 'nested_form'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
