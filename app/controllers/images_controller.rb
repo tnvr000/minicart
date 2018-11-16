@@ -25,9 +25,9 @@ class ImagesController < ApplicationController
 	end
 
 	def make_thumb
-		@image = Image.find(params[:id])
-		@image.make_thumb
-		redirect_to product_images_url(@image.imageable)
+		@thumb_to_be = Image.find(params[:id])
+		@old_thumb = @thumb_to_be.make_thumb
+		# redirect_to product_images_url(@image.imageable)
 	end
 
 	private

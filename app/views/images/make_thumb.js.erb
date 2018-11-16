@@ -1,0 +1,4 @@
+$('#make_thumb<%= @thumb_to_be.id %>').remove()
+<%= puts @old_thumb.id %>
+<%= puts @thumb_to_be.id %>
+$('#image<%= @old_thumb.id %>').append('<%= link_to "Make Thumb", make_thumb_image_path(@old_thumb), method: :put, remote: true, class: "button", id: "make_thumb#{@old_thumb.id}" %>')

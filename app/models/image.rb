@@ -22,5 +22,6 @@ class Image < ActiveRecord::Base
 			old_thumb = self.imageable.thumb;
 			old_thumb.update_attributes(default: false) unless old_thumb.nil?
 			self.update_attributes(default: true)
+			return old_thumb
 		end
 end

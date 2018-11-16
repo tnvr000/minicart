@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   resources :products do
     resources :images, shallow: true do
       member do
-        patch 'make_thumb'
+        put 'make_thumb'
       end
     end
     collection do

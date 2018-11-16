@@ -1,11 +1,10 @@
 <% @images.each do |image| %>
-	<div>
+	<div id="image<%= image.id %>">
 		<%= image_tag image.image.url(:thumb) %><br><br>
 		<%= link_to "Delete", image_path(image), method: :delete, class: "button" %>
 		<% unless image.default? %>
-			<%= link_to "Make Thumb", make_thumb_image_path(image), method: :patch, class: "button" %>
+			<%= link_to "Make Thumb", make_thumb_image_path(image), method: :put, remote: true, class: "button", id: "make_thumb#{image.id}" %>
 		<% end %>
-		<br><br><br>
 	</div>	
 <% end %>
 <br>
