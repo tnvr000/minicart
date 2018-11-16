@@ -23,4 +23,21 @@ class Product < ActiveRecord::Base
 		Product.of_category(self.category_id).of_similar_price(self.price).excluding(self.id)
 	end
 
+	def self.for_data_table
+		products_array = []
+		products = Product.all
+		products.each do |product|
+			product_data = []
+			product.attributes.each do |key, value|
+				product_data << value.to_s
+			end
+			products_array << product_data
+		end
+		return products_array
+	end
+
+	def self.to_a
+		puts self.superclass.superclass
+	end
+
 end

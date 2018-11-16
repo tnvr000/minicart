@@ -1,6 +1,6 @@
 <div class="row product-details-container">
-	<div class="col-sm-7">
-		<%= image_tag @thumb.image.url(:large) unless @thumb.nil? %>
+	<div class="col-sm-7 product-image-container">
+		<%= image_tag @thumb.image.url(:large), class: "product-image" unless @thumb.nil? %>
 	</div>
 	<div class="col-sm-5 product-details">
 		<span class="product-name"><%= @product.name %></span>
@@ -13,11 +13,11 @@
 	<%= form_for @cart_item do |form| %>
 		<%= form.hidden_field :product_id, value: @product.id %>
 
-		<%= form.submit 'Add to Cart', class: "btn btn-primary" %>
+		<%= form.submit 'Add to Cart', class: "button" %>
 	<% end %>
 <% else %>
-	<%= link_to 'Go to cart', cart_items_path, class: 'btn btn-primary' %>
+	<%= link_to 'Go to cart', cart_items_path, class: 'button' %>
 <% end %>
-<%= link_to "View all images", product_images_path(@product), class: "btn btn-primary" %>
+<%= link_to "View all images", product_images_path(@product), class: "button" %>
 
 <%= render partial: 'related_products', locals: {object: @related_products} %>

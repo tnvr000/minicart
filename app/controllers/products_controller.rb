@@ -30,7 +30,17 @@ class ProductsController < ApplicationController
 	end
 
 	def products_tables
-		@products = Product.all
+		@products = Product.includes(:category, :images).all
+		respond_to do |format|
+			format.json do
+				data = {}
+				data["aaData"] = @products.as_json(include: [{category: {only: [:name]}}, {images: {only: [:id]}}])
+				# binding.pry
+				# data = Product.for_data_table
+				render json: data
+			end
+			format.html
+		end
 	end
 
 	private

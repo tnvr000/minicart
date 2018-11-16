@@ -1,22 +1,22 @@
 <% if user_signed_in? %>
 	<span>
-		<%= link_to current_user.name.split(" ")[0], user_path(current_user), class: "btn btn-primary" %>
+		<%= link_to current_user.name.split(" ")[0], user_path(current_user), class: "button" %>
 	</span>
-	<%= link_to 'log out', destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
+	<%= link_to 'log out', destroy_user_session_path, method: :delete, class: "button" %>
 	<span>
-		<%= link_to "Cart", cart_items_path, class: "btn btn-primary" %>
+		<%= link_to "Cart", cart_items_path, class: "button" %>
 		<span id="cart_items_quantity"><%= current_user.cart.cart_items.count %></span>
 	</span>
 	<span>
-		<%= link_to "Orders", orders_path, class: "btn btn-primary" %>
+		<%= link_to "Orders", orders_path, class: "button" %>
 	</span>
 <% else %>
 	<div class="row header-actions">
 		<div class="header-action">
-			<%= link_to 'Login', new_user_session_path, class: "btn btn-primary btn-block" %>
+			<%= link_to 'Login', new_user_session_path, class: "button btn-block" %>
 		</div>
 		<div class="header-action">
-			<%= link_to 'Sign Up', new_user_registration_path, class: "btn btn-primary btn-block" %>
+			<%= link_to 'Sign Up', new_user_registration_path, class: "button btn-block" %>
 		</div>
 	</div>
 <% end %>

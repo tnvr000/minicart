@@ -16,6 +16,7 @@ gem 'coffee-rails', '~> 4.1.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails', '4.3.3'
+gem 'jquery-datatables-rails', '3.1.1'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks', '5.2.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -35,7 +36,6 @@ gem 'devise', '4.5.0'
 
 gem 'paperclip', '6.1.0'
 
-gem 'jquery-datatables-rails', '3.4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]

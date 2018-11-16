@@ -5,7 +5,12 @@
 $('document').ready () ->
 	console.log("Ready")
 	$('#products').dataTable({
-		"pagingType": "full_numbers",
-		"lengthMenu": [[25, 50, -1], [25, 50, "All"]],
-		"scrollY": "250px"
+		"bProcessing" : true,
+		"sAjaxSource" : "products_tables.json",
+		"aoColumns" : [
+			{"mData" : "name"},
+			{"mData" : "price"},
+			{"mData" : "category.name"},
+			{"mData" : "images.length"}
+		]
 	});

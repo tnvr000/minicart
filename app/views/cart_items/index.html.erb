@@ -17,19 +17,19 @@
 				</div>
 				<div class="row product-operation-container">
 					<div class="col-sm-3 product-quantity-operation">
-						<%= link_to '-', change_quantity_cart_item_path(cart_item, 'minus'), method: :put, remote: true, class: 'btn btn-default btn-change-quantity' %>
+						<%= link_to '-', change_quantity_cart_item_path(cart_item, 'minus'), method: :put, remote: true, class: 'button' %>
 						<span class="product-quantity" id="<%= "quantity_cart_item#{cart_item.id}" %>"><%= cart_item.quantity %></span>
-						<%= link_to '+', change_quantity_cart_item_path(cart_item, 'plus'), method: :put, remote: true, class: 'btn btn-default btn-change-quantity' %>
+						<%= link_to '+', change_quantity_cart_item_path(cart_item, 'plus'), method: :put, remote: true, class: 'button' %>
 					</div>
 					<div class="col-sm-9 product-remove-operation">
-						<%= link_to 'Remove', cart_item_path(cart_item), method: :delete, remote: true, class: 'btn btn-default btn-remove' %>
+						<%= link_to 'Remove', cart_item_path(cart_item), method: :delete, remote: true, class: 'button' %>
 					</div>
 				</div>
 			</div>
 		<% end %>
 	</div>
 	<div>
-		<%= link_to 'Continue Shopping', root_path, class: 'btn-action' %>
-		<%= link_to 'Place Order', new_order_path, class: 'btn-action' %>
+		<%= link_to 'Continue Shopping', root_path, class: 'button' %>
+		<%= link_to 'Place Order', new_order_path, class: 'button' %>
 	</div>
 <% end %>

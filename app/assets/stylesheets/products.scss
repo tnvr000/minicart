@@ -5,6 +5,12 @@
 @import "variables";
 
 .product-details-container {
+	.product-image-conatiner {
+		
+		.product-image {
+			width: 100%;
+		}
+	}
 	.product-details {
 		.product-name {
 			display: block;
