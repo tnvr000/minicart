@@ -8,5 +8,5 @@
 	</div>	
 <% end %>
 <br>
-<%= link_to "Back", product_path(@images.first.imageable), class: "button" %>
-<%= link_to "Add New images", new_product_image_path(@images.first.imageable), class: "button" %>
+<%= link_to "Back", product_path(@product_id), class: "button" %>
+<%= link_to "Add New images", new_product_image_path(@product_id), class: "button" %>

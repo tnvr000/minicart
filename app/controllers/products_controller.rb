@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
 	end
 
 	def create
-		@product = Product.new(productWI_params)
+		@product = Product.new(product_params)
 		if @product.save
 			redirect_to product_url(@product)
 		else
@@ -74,6 +74,6 @@ class ProductsController < ApplicationController
 	end
 
 	def productWI_params
-		params.require(:product).permit(:name, :price, :category_id, :description, images_attributes: [:id, :image])
+		params.require(:product).permit(:name, :price, :category_id, :description, images_attributes: [:id, :image, :thumb, :_destroy, ])
 	end
 end
