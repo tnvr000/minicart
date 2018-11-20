@@ -14,6 +14,6 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require dataTables/jquery.dataTables
-// require jquery_nested_form
+//= require jquery_nested_form
 //= require turbolinks
 //= require_tree .

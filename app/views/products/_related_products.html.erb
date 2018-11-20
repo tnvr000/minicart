@@ -3,7 +3,7 @@
 		<% object.each do |product| %>
 			<%= link_to product_path(product) do %>
 				<div class="product-icon">
-					<%= image_tag product.thumb.image.url, class: "product-image" %>
+					<%= image_tag product.thumb.image.url, class: "product-image" unless product.thumb.nil? %>
 					<div class="product-details">
 						<span class="product-name">
 							<%= product.name %>

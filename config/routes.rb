@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     end
     collection do
       get 'products_tables', as: "table_of"
+      get 'newWI'
+      post 'createWI'
     end
   end
   

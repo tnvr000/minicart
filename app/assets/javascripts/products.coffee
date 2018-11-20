@@ -5,13 +5,16 @@
 $('document').ready () ->
 	console.log("Ready")
 	$('#products').dataTable({
-		"bProcessing" : true,
 		"sAjaxSource" : "products_tables.json",
+		"bProcessing" : true,
+		"bServerSide" : true,
 		"autoWidth" : false,
+		"aLengthMenu" : [[25, 50, -1], [25, 50, "All"]],
 		"aoColumns" : [
+			{"mData" : "id"},
 			{"mData" : "name"},
 			{"mData" : "price"},
-			{"mData" : "category.name"},
-			{"mData" : "images.length"}
+			{"mData" : "category.name", "bSearchable" : "false"},
+			{"mData" : "images.length", "bSearchable" : "false"}
 		]
 	});

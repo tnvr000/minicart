@@ -1,0 +1,32 @@
+<%= nested_form_for @product do |f| %>
+	<div>
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+	</div>
+
+	<div>
+		<%= f.label :category %>
+		<%= f.collection_select :category_id, Category.all, :id, :name %>
+	</div>
+
+	<div>
+		<%= f.label :price %>
+		<%= f.text_field :price %>
+	</div>
+
+	<div>
+		<%= f.label :description %>
+		<%= f.text_area :description %>
+	</div>
+	<%# binding.pry %>
+	<%= f.fields_for :images do |imgf| %>
+		<div>
+			<%= imgf.label :image %>
+			<%= imgf.file_field :image %>
+		</div>
+		<%= imgf.link_to_remove 'Remove this image' %>
+	<% end %>
+	<div><%= f.link_to_add 'Add an image', :images %></div>
+
+	<div><%= f.submit %></div>
+<% end %>
