@@ -36,3 +36,27 @@ $(document).ready(function() {
 
 	
 });
+
+var shopifyBuy_api = {
+	productsPromise : function(client, conditions = {}) {
+		if(conditions.length === 0)
+			return client.product.fetchAll();
+		else {
+			return client.product.fetchQuery(conditions);
+		}
+	}
+	allProduct : function(client) {
+		var allProducts
+		client.product.fetchAll().then(function(products) {
+			allProducts = products;
+		})
+		return allProducts;
+	}
+	productsWith : function(client, conditions={]}) {
+		var product;
+		client.product.fetchQuery(conditions).then(function(products) {
+			product = products;
+		})
+		return product
+	}
+}
