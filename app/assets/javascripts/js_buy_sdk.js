@@ -20,7 +20,7 @@ $(document).ready(function() {
 	// });
 
 	//fetch products by query
-	// client.product.fetchQuery({handle: "short-sleeve-t-shirt"}).then(function(products) {
+	// client.product.fetchQuery({query:"title:'Short-Sleeve T-Shirt'"}).then(function(products) {
 	// 	for(i = 0; i < products.length; ++i) {
 	// 		console.log(products[i].title);
 	// 	}
@@ -34,7 +34,47 @@ $(document).ready(function() {
 	// 	}
 	// })
 
-	
+	// fetch only the collections(all of it)
+	// client.collection.fetchAll().then(function(collections) {
+	// 	for(i = 0; i < collections.length; ++i) {
+	// 		console.log(collections[i].title);
+	// 	}
+	// });
+
+	//fetch all collections and all the products in it
+	// client.collection.fetchAllWithProducts().then(function(collections) {
+	// 	console.log("collections length " + collections.length);
+	// 	for(i = 0; i < collections.length; ++i) {
+	// 		console.log(collections[i].title);
+	// 		products = collections[i].products;
+	// 		for(j = 0; j < products.length; ++j) {
+	// 			console.log(products[j].title);
+	// 		}
+	// 		console.log("++++++++++++++++++++++++");
+	// 	}
+	// });
+
+	//fetch collection following given conditions
+	// client.collection.fetchQuery({query:"title:'Long Sleeve'"}).then(function(collections) {
+	// 	for(i = 0; i < collections.length; ++i) {
+	// 		console.log(collections[i].title)
+	// 	}
+	// 	console.log(collections);
+	// })
+
+	//fetch collection and its products following given conditions
+	// var collectionID;
+	// client.collection.fetchQuery({query:"title:'Long Sleeve'"}).then(function(collections) {
+	// 	collectionID = collections[0].id
+	// 	console.log(collections);
+
+	// 	client.collection.fetchWithProducts(collectionID).then(function(collection) {
+	// 		products = collection.products;
+	// 		for (var i = 0; i < products.length; i++) {
+	// 			console.log(products[i].title)
+	// 		}
+	// 	})
+	// })
 });
 
 var shopifyBuy_api = {
@@ -44,15 +84,15 @@ var shopifyBuy_api = {
 		else {
 			return client.product.fetchQuery(conditions);
 		}
-	}
+	},
 	allProduct : function(client) {
 		var allProducts
 		client.product.fetchAll().then(function(products) {
 			allProducts = products;
 		})
 		return allProducts;
-	}
-	productsWith : function(client, conditions={]}) {
+	},
+	productsWith : function(client, conditions={}) {
 		var product;
 		client.product.fetchQuery(conditions).then(function(products) {
 			product = products;
