@@ -5,6 +5,9 @@ $(document).ready(function() {
 		domain: 'tnvr-demo.myshopify.com',
 		storefrontAccessToken: '60df3ab40e520857fddf6bf446e67cd0'
 	});
+	client.checkout_id = 'Z2lkOi8vc2hvcGlmeS9DaGVja291dC82YmU4MjgwMzRlOGZkNGU0MmYyZGFmOTIxOWQyNmJkMj9rZXk9ZWQ3NjU1ZmIyYzI5MzZjM2FlMzU4YmZhZjhmYjJlNDU='
+
+
 
 	//Fetch a product by id
 	// id = 'Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzI0NzAzMjgxMzk4NDA='
@@ -77,20 +80,24 @@ $(document).ready(function() {
 	// })
 });
 
-var shopifyBuy_api = {
-	productsPromise : function(client, conditions = {}) {
+var shopify_buy_api = {
+	productsPromise : function(conditions = {}) {
 		if(conditions.length === 0)
 			return client.product.fetchAll();
 		else {
 			return client.product.fetchQuery(conditions);
 		}
 	},
-	allProduct : function(client) {
-		var allProducts
+	allProducts : function(client) {
+		var tempProducts
 		client.product.fetchAll().then(function(products) {
-			allProducts = products;
+			tempProducts = products;
 		})
-		return allProducts;
+		while(tempProducts == undefined) {
+			console.log(tempProducts)
+		}
+		console.log(tempProducts)
+		return tempProducts;
 	},
 	productsWith : function(client, conditions={}) {
 		var product;
@@ -98,5 +105,12 @@ var shopifyBuy_api = {
 			product = products;
 		})
 		return product
+	}
+	checkoutPromise : function(checkout_id = null) {
+		if(checkout_id === null) {
+			return client.checkout.create();
+		} else {
+			return client.checkout.fetch(checkout);
+		}
 	}
 }

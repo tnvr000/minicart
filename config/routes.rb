@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       end
     end
     collection do
+      get 'shopify'
       get 'products_tables', as: "table_of"
       get 'newWI'
       post 'createWI'
