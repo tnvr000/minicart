@@ -105,12 +105,42 @@ var shopify_buy_api = {
 			product = products;
 		})
 		return product
-	}
-	checkoutPromise : function(checkout_id = null) {
-		if(checkout_id === null) {
-			return client.checkout.create();
+	},
+	checkoutPromise : function() {
+		if(client.checkout_id === null) {
+			promise = client.checkout.create();
+			promise.then(function(checkout) {client.checkout_id = checkout.id})
+			return promise
 		} else {
-			return client.checkout.fetch(checkout);
+			return client.checkout.fetch(client.checkout_id);
 		}
-	}
+	},
+	addToCart : function(component) {
+		lineItems = [{variantId:component.id, quantity:1}]
+		client.checkout.addLineItems(client.checkout_id, lineItems).then(function(cart) {
+			updateCart(cart)
+		});
+	},
+	removeFromCart : function(component) {
+		lineItems = [component.getAttribute('data-liid')]
+		console.log(lineItems)
+		client.checkout.removeLineItems(client.checkout_id, lineItems).then(function(cart) {
+			updateCart(cart)
+		});
+	},
+}
+
+var updateCart = function(cart) {
+	console.log(cart.lineItems)
+	console.log(cart.lineItems[0].variant.image)
+	console.log(cart.lineItems[0].title)
+	console.log(cart.lineItems[0].id)
+	console.log("------------------------------------")
+	cart.lineItems.forEach(function(item, i) {
+		console.log(item.variant.id)
+		console.log(item.title)
+		console.log(item.variant.price)
+		console.log(item.quantity)
+		console.log("====================================")
+	});
 }

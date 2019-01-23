@@ -6,10 +6,40 @@
 		<div class="col-sm-8 product-details">
 			<label class="product-name">{title}</label>
 			<label class="product-price">{price}</label>
-			<a href="javascript:void(0)" id="add_to_cart">Add to cart</a>
+			<a href="javascript:void(0)" id="{vid}" name="add_to_cart" onclick="shopify_buy_api.addToCart(this)">Add to cart</a>
 		</div>
 	</div>
 </div>
-<div id="product_list">
-	
+<div id="lineItemTemplate" style="display:none">	
+	<div id="{liid}" class="line-item-container">
+		<label class="line-item-name">{title}</label>
+		<div class="row">
+			<div class="col-sm-6 line-item-image-container">
+				<img src="{image_source}" class="line-item-image">
+			</div>
+			<div class="col-sm-6">
+				<label class="line-item-price">{price}</label>
+				<a href="javascript:void(0)" data-liid="{liid}" onclick="shopify_buy_api.removeFromCart(this)">remove</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-3">
+				<a href="javascript:void(0)" >-</a>
+			</div>
+			<div class="col-sm-3">
+				<input type="text" value="{quantity}">
+			</div>
+			<div class="col-sm-3">
+				<a href="javascript:void(0)">+</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div id="product_list" class="col-sm-8">
+		
+	</div>
+	<div id="cartList" class="col-sm-4">
+
+	</div>
 </div>
