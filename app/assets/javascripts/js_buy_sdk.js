@@ -88,29 +88,11 @@ var shopify_buy_api = {
 			return client.product.fetchQuery(conditions);
 		}
 	},
-	allProducts : function(client) {
-		var tempProducts
-		client.product.fetchAll().then(function(products) {
-			tempProducts = products;
-		})
-		while(tempProducts == undefined) {
-			console.log(tempProducts)
-		}
-		console.log(tempProducts)
-		return tempProducts;
-	},
-	productsWith : function(client, conditions={}) {
-		var product;
-		client.product.fetchQuery(conditions).then(function(products) {
-			product = products;
-		})
-		return product
-	},
 	checkoutPromise : function() {
 		if(client.checkout_id === null) {
-			promise = client.checkout.create();
-			promise.then(function(checkout) {client.checkout_id = checkout.id})
-			return promise
+			return client.checkout.create().then(function (checkout) {
+				client.checkout_id = checkout.id
+			});
 		} else {
 			return client.checkout.fetch(client.checkout_id);
 		}
@@ -118,29 +100,64 @@ var shopify_buy_api = {
 	addToCart : function(component) {
 		lineItems = [{variantId:component.id, quantity:1}]
 		client.checkout.addLineItems(client.checkout_id, lineItems).then(function(cart) {
-			updateCart(cart)
+			// renderer.printCart(cart)
+			renderer.drawCart(cart)
 		});
 	},
 	removeFromCart : function(component) {
 		lineItems = [component.getAttribute('data-liid')]
-		console.log(lineItems)
 		client.checkout.removeLineItems(client.checkout_id, lineItems).then(function(cart) {
-			updateCart(cart)
+			// renderer.printCart(cart)
+			renderer.drawCart(cart)
 		});
-	},
+	}
 }
 
-var updateCart = function(cart) {
-	console.log(cart.lineItems)
-	console.log(cart.lineItems[0].variant.image)
-	console.log(cart.lineItems[0].title)
-	console.log(cart.lineItems[0].id)
-	console.log("------------------------------------")
-	cart.lineItems.forEach(function(item, i) {
-		console.log(item.variant.id)
-		console.log(item.title)
-		console.log(item.variant.price)
-		console.log(item.quantity)
-		console.log("====================================")
-	});
+var renderer =  {
+	drawCart : function(cart) {
+		var cartList = document.getElementById('cartList');
+		cartListInnerHTML = ""
+		var lineItemTemplate = document.getElementById('lineItemTemplate').innerHTML;
+		var lineItem
+		for(i = 0; i < cart.lineItems.length; ++i) {
+			lineItem = cart.lineItems[i];
+			lineItemHTML = lineItemTemplate
+			lineItemHTML = lineItemHTML.replace('{title}', lineItem.title);
+			while(lineItemHTML.indexOf('{liid}') != -1) {
+				lineItemHTML = lineItemHTML.replace('{liid}', lineItem.id);
+			}
+			lineItemHTML = lineItemHTML.replace('{quantity}', lineItem.quantity)
+			lineItemHTML = lineItemHTML.replace('{price}', lineItem.variant.price)
+			lineItemHTML = lineItemHTML.replace('{image_source}', lineItem.variant.image.src)
+			cartListInnerHTML += lineItemHTML;
+		}
+		cartList.innerHTML = cartListInnerHTML
+	},
+	drawProducts : function(products) {
+		product_list = document.getElementById('product_list');
+		product_template = document.getElementById('product_template').innerHTML;
+		for(i = 0; i < products.length; ++i) {
+			product = products[i];
+			productHTML = product_template.replace('style="display:none', '');
+			productHTML = productHTML.replace('{image_source}', product.images[0].src);
+			productHTML = productHTML.replace('{title}', product.title);
+			productHTML = productHTML.replace('{price}', product.variants[0].price);
+			productHTML = productHTML.replace('{vid}', product.variants[0].id);
+			product_list.innerHTML += productHTML;
+		}
+	},
+	printCart : function(cart) {
+		console.log(cart.lineItems)
+		console.log(cart.lineItems[0].variant.image)
+		console.log(cart.lineItems[0].title)
+		console.log(cart.lineItems[0].id)
+		console.log("------------------------------------")
+		cart.lineItems.forEach(function(item, i) {
+			console.log(item.variant.id)
+			console.log(item.title)
+			console.log(item.variant.price)
+			console.log(item.quantity)
+			console.log("====================================")
+		});
+	}
 }

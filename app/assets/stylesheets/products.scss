@@ -36,6 +36,34 @@
 		}
 	}
 }
+
+.line-item-container {
+	background-color: white;
+	.line-item-name {
+		display: block;
+		color:red;
+	}
+	.temp1 {
+		.line-item-image-container {
+			.line-item-image {
+				width: 100%;
+			}
+		}
+		.temp1-1 {
+			.line-item-price {
+				display: block;
+			}
+		}
+	}
+	.temp2 {
+		.quantity {
+			input {
+				width:100%;
+			}
+		}
+	}
+}
+
 #products_wrapper {
 	.dataTables_length {
 		display: inline-block;

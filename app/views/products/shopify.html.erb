@@ -13,24 +13,24 @@
 <div id="lineItemTemplate" style="display:none">	
 	<div id="{liid}" class="line-item-container">
 		<label class="line-item-name">{title}</label>
-		<div class="row">
+		<div class="row temp1">
 			<div class="col-sm-6 line-item-image-container">
 				<img src="{image_source}" class="line-item-image">
 			</div>
-			<div class="col-sm-6">
+			<div class="col-sm-6 temp1-1">
 				<label class="line-item-price">{price}</label>
-				<a href="javascript:void(0)" data-liid="{liid}" onclick="shopify_buy_api.removeFromCart(this)">remove</a>
+				<a href="javascript:void(0)" data-liid="{liid}" onclick="shopify_buy_api.removeFromCart(this)" class="btn btn-danger">remove</a>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row temp2">
 			<div class="col-sm-3">
-				<a href="javascript:void(0)" >-</a>
+				<a href="javascript:void(0)" class="btn btn-warning" data-liid="{liid}" data-vid="{vid}" data-dir="-">-</a>
 			</div>
-			<div class="col-sm-3">
+			<div class="col-sm-6 quantity">
 				<input type="text" value="{quantity}">
 			</div>
 			<div class="col-sm-3">
-				<a href="javascript:void(0)">+</a>
+				<a href="javascript:void(0)" class="btn btn-warning" data-liid="{liid}" data-vid="{vid}" data-dir="+">+</a>
 			</div>
 		</div>
 	</div>
