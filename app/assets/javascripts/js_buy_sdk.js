@@ -110,6 +110,24 @@ var shopify_buy_api = {
 			// renderer.printCart(cart)
 			renderer.drawCart(cart)
 		});
+	},
+	updateLineItem : function(component) {
+		quantitySelectorStr = "#" + component.getAttribute('data-liid') + " [type='text']"
+		oldQuantity = $(quantitySelectorStr)[0].value
+		newQuantity = getNewQuantity(oldQuantity, component.getAttribute('data-dir'));
+		if(newQuantity === 0) {
+			this.removeFromCart(component)
+		} else {
+			lineItems = [{
+				id: component.getAttribute('data-liid'),
+				quantity: newQuantity,
+				variantId: component.getAttribute('data-vid')
+			}]
+			client.checkout.updateLineItems(client.checkout_id, lineItems).then(function(cart) {
+				// renderer.printCart(cart)
+				renderer.drawCart(cart)
+			})
+		}
 	}
 }
 
@@ -125,6 +143,9 @@ var renderer =  {
 			lineItemHTML = lineItemHTML.replace('{title}', lineItem.title);
 			while(lineItemHTML.indexOf('{liid}') != -1) {
 				lineItemHTML = lineItemHTML.replace('{liid}', lineItem.id);
+			}
+			while (lineItemHTML.indexOf('{vid}') != -1) {
+				lineItemHTML = lineItemHTML.replace('{vid}', lineItem.variant.id)
 			}
 			lineItemHTML = lineItemHTML.replace('{quantity}', lineItem.quantity)
 			lineItemHTML = lineItemHTML.replace('{price}', lineItem.variant.price)
@@ -160,4 +181,14 @@ var renderer =  {
 			console.log("====================================")
 		});
 	}
+}
+
+getNewQuantity = function(quantity, dir) {
+	quantity = parseInt(oldQuantity)
+	if (dir === "plus")
+		return quantity + 1
+	else if (dir === "minus")
+		return quantity - 1
+	else
+		return quantity
 }
