@@ -40,6 +40,8 @@ Rails.application.routes.draw do
 
   get 'webhooks/install', to: "webhooks#install"
   get 'webhooks/auth', to: 'webhooks#auth'
+  post 'webhooks/shipping_rates', to: 'webhooks#shipping_rates'
+  post 'webhooks/order_created', to: 'webhooks#order_created'
   # resources :images
 
   # The priority is based upon order of creation: first created -> highest priority.
