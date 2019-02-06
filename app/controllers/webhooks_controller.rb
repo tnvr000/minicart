@@ -24,21 +24,29 @@ class WebhooksController < ApplicationController
 		shop = params[:shop]
 		code = params[:code]
 		hmac = params[:hmac]
+		@shop = ShopifyStore.find_or_initialize_by(:name=>shop)
 
 		if(!authorize(hmac))
 			render nothing: true, status: 404 and return
 		end
-		response = permanent_access_token shop, code
-		if(response.message == 'OK')
-			token = JSON.parse(response.body)["access_token"]
-			puts token
-			create_carrier_service token
-			# create_fulfillment_service token
-			create_webhooks token
+		if @shop.token.nil?
+			response = permanent_access_token @shop.name, code
+			if(response.message == 'OK')
+				token = JSON.parse(response.body)["access_token"]
+				@shop.token = token
+				if @shop.save
+					create_carrier_service token
+					# create_fulfillment_service token
+					create_webhooks token
+				end
+			else
+				render html: response.body.html_safe and return
+			end
 		else
-			render html: response.body.html_safe and return
+			create_carrier_service @shop.token
+			create_webhooks @shop.token
 		end
-		render nothing: true
+		redirect_to "https://#{@shop.name}/admin/apps/minicart-2"
 	end
 
 	def shipping_rates
@@ -61,7 +69,17 @@ class WebhooksController < ApplicationController
 
 	def order_created
 		puts params
+		render nothing: true, status: 200
+	end
+
+	def app_uninstalled
 		# binding.pry
+		shop = params[:name] + ".myshopify.com"
+		@shop = ShopifyStore.find_by_name(shop)
+		puts shop, @shop
+		unless @shop.nil?
+			@shop.delete
+		end
 		render nothing: true, status: 200
 	end
 
@@ -85,8 +103,7 @@ class WebhooksController < ApplicationController
 	end
 
 	def set_frame_option
-		response.headers["X-Frame-Options"] = "allow-from https://#{@shop.name}"
-		binding.pry
+		response.headers["X-Frame-Options"] = "allow-from https://#{@shop.name}" unless @shop.nil?
 	end
 
 	def create_carrier_service token
@@ -129,24 +146,39 @@ class WebhooksController < ApplicationController
 	end
 
 	def create_webhooks token
-		uri = URI("https://#{SHOP}/admin/webkooks.json")
+		uri = URI("https://#{SHOP}/admin/webhooks.json")
 		headers = {
 			"Accept" => "application/json",
 			"Content-Type" => "application/json",
 			"X-Shopify-Access-Token" => "#{token}"
 		}
 		create_order_created_webhook uri, headers
+		create_app_uninstall_webhook uri, headers
 	end
 
 	def create_order_created_webhook uri, headers
 		query = {
-			webkook: {
-				topic: "orders/create",
-				address: "https://#{APP_URL}/webhooks/order_created",
+			"webhook" => {
+				"topic" => "orders/create",
+				"address" => "https://#{APP_URL}/webhooks/order_created",
+				"format" => "json"
+			}
+		}
+		res = Net::HTTP.post(uri, query.to_json, headers)
+		puts res
+		puts res.body
+	end
+
+	def create_app_uninstall_webhook uri, headers
+		query = {
+			webhook: {
+				topic: "app/uninstalled",
+				address: "https://#{APP_URL}/webhooks/app_uninstalled",
 				format: "json"
 			}
 		}
 		res = Net::HTTP.post(uri, query.to_json, headers)
+		puts res
 		puts res.body
 	end
 
