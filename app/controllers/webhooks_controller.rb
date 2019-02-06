@@ -3,12 +3,21 @@ require 'uri'
 class WebhooksController < ApplicationController
 	skip_before_action :verify_authenticity_token
 	before_action :verify_shopify_request, only: [:shipping_rates]
+	after_action :set_frame_option
+
+	def index
+		shop = params[:shop]
+	end
+
 	def install
 		shop = params[:shop]
-		scopes = "read_orders,read_products,write_products,write_shipping,write_fulfillments"
+		@shop = ShopifyStore.where(:name=>shop).first
+		if @shop.nil?
+			scopes = "read_orders,read_products,write_products,write_shipping,write_fulfillments"
 
-		install_url = build_install_url shop, scopes
-		redirect_to install_url
+			install_url = build_install_url shop, scopes
+			redirect_to install_url
+		end
 	end
 
 	def auth
@@ -73,6 +82,11 @@ class WebhooksController < ApplicationController
 			code: code
 		}
 		res = Net::HTTP.post(URI(access_token_url), query.to_json, "Content-Type" => "application/json")
+	end
+
+	def set_frame_option
+		response.headers["X-Frame-Options"] = "allow-from https://#{@shop.name}"
+		binding.pry
 	end
 
 	def create_carrier_service token

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181109080011) do
+ActiveRecord::Schema.define(version: 20190206094209) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "plot"
@@ -83,6 +83,13 @@ ActiveRecord::Schema.define(version: 20181109080011) do
     t.integer  "category_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "shopify_stores", force: :cascade do |t|
+    t.string   "name"
+    t.string   "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
