@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>minicart</title>
+	<%= javascript_include_tag 'https://cdn.shopify.com/s/assets/external/app.js' %>
+	<script>
+	  const apiKey = '<%= API_KEY %>';
+	  const redirectUri = 'https://<%= APP_URL %>/webhooks';
+	  const permissionUrl = `/oauth/authorize?client_id=${apiKey}&scope=read_products,read_content&redirect_uri=${redirectUri}`;
+
+	  ShopifyApp.init({apiKey: apiKey, shopOrigin: `https://<%= @shop.name %>`});
+	  ShopifyApp.flashNotice("App Initiated successfully.");
+	  ShopifyApp.Modal.collectionPicker();
+
+	</script>
+</head>
+<body>
+	<div class="header">
+		Header
+	</div>
+	<div class="nav">
+		Navigation
+	</div>
+	<%= yield %>
+	<div class="footer">
+		footer
+	</div>
+</body>
+</html>
