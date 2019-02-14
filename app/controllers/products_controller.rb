@@ -13,7 +13,6 @@ class ProductsController < ApplicationController
 	end
 
 	def show
-		# binding.pry
 		@product = Product.find(params[:id])
 		@thumb = @product.thumb
 		@related_products = @product.related_products.includes(:thumb)
@@ -34,7 +33,6 @@ class ProductsController < ApplicationController
 		# @products = Product.includes(:category, :images).all
 		respond_to do |format|
 			format.json do
-				# binding.pry
 				if params["sEcho"].blank?
 					@products = Product.includes(:category, :images).all
 					total_records = Product.all.count
@@ -45,7 +43,6 @@ class ProductsController < ApplicationController
 				data['iTotalRecords'] = total_records
 				data['iTotalDisplayRecords'] = total_records
 				data["aaData"] = @products.as_json(include: [{category: {only: [:name]}}, {images: {only: [:id]}}])
-				# binding.pry
 				render json: data
 			end
 			format.html do
@@ -59,7 +56,6 @@ class ProductsController < ApplicationController
 	end
 
 	def createWI
-		binding.pry
 		@product = Product.includes(:images).new(productWI_params)
 		if @product.save
 			redirect_to product_path(@product)

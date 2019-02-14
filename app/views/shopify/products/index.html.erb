@@ -1,0 +1,12 @@
+<script type="text/javascript">
+	ShopifyApp.Bar.loadingOn()
+</script>
+<%= link_to "Back", shopify_shop_path(@shop), class: "btn btn-info" %>
+<br>
+<% @products.each do |product| %>
+	<div>
+		<%= link_to product.title, edit_shopify_shop_product_path(@shop, product.id) %> in 
+		<%= product.variants.size %> varints is sold by 
+		<%= product.vendor %>
+	</div>
+<% end %>

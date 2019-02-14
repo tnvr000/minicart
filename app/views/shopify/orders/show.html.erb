@@ -1,0 +1,14 @@
+<%= link_to "Back", shopify_shop_orders_path(@shop), class: "btn btn-info" %><br>
+<div>
+	<%= @order.name %> <%= @order.subtotal_price %><br>
+	Expected Shipping Cost
+	<%= (@order.total_price.to_f - @order.subtotal_price.to_f).round(2) %><br>
+	<% @order.line_items.each do |line_item| %>
+		<div>
+			<%= line_item.title %>
+			<%= line_item.quantity %> x 
+			<%= line_item.price %> = 
+			<%= (line_item.quantity.to_i * line_item.price.to_f).round(2) %>
+		</div>
+	<% end %>
+</div>

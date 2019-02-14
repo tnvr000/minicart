@@ -38,6 +38,8 @@ gem 'paperclip', '6.1.0'
 
 gem 'nested_form'
 
+gem 'shopify_api', path: 'vendor/gems/shopify_api-5.2.4'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]

@@ -1,0 +1,2 @@
+module Shopify::HomesHelper
+end

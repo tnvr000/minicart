@@ -1,0 +1,8 @@
+<script type="text/javascript">
+	ShopifyApp.Bar.loadingOn()
+	window.onload = function () {
+		ShopifyApp.Bar.loadingOff()
+	}
+</script>
+<%= link_to "Back", shopify_shop_products_path(@shop), class: "btn btn-info" %>
+<%= @product.title %>

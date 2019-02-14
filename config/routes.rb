@@ -37,16 +37,27 @@ Rails.application.routes.draw do
     end
   end
   resources :orders
-  resources :webhooks do
-    member do
-    end
+  # resources :webhooks do
+  #   member do
+  #   end
 
-    collection do
-      get 'install'
-      get 'auth'
-      post 'shipping_rates'
-      post 'order_created'
-      post 'app_uninstalled'
+  #   collection do
+  #     get 'install'
+  #     get 'auth'
+  #     post 'shipping_rates'
+  #     post 'order_created'
+  #     post 'app_uninstalled'
+  #   end
+  # end
+
+  namespace :shopify do
+    resources :shops,       only: [:index, :show] do
+      resources :orders,      only: [:index, :show, :edit, :update]
+      resources :products,    only: [:index, :edit, :update]
+      collection do 
+        get 'auth'
+      end
+      
     end
   end
   # resources :images

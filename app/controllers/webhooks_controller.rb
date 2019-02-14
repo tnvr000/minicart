@@ -9,6 +9,13 @@ class WebhooksController < ApplicationController
 
 	def index
 		shop = params[:shop]
+		@shop = ShopifyStore.find_or_initialize_by(:name=>shop)
+		if @shop.token.nil?
+			scopes = "read_orders,read_products,write_products,write_shipping,write_fulfillments"
+
+			install_url = build_install_url scopes
+			redirect_to install_url and return
+		end
 	end
 
 	def install
@@ -20,10 +27,15 @@ class WebhooksController < ApplicationController
 			install_url = build_install_url scopes
 			redirect_to install_url and return
 		end
+		session = ShopifyAPI::Session.new(@shop.name, @shop.token)
+		ShopifyAPI::Base.activate_session(session)
+		@orders = ShopifyAPI::Order.find(:all)
+		# @orders.first.attributes.each do |attribute, value|
+		# 	puts "#{attribute} = #{value}(#{value.class})"
+		# end
 	end
 
 	def auth
-		binding.pry
 		shop = params[:shop]
 		code = params[:code]
 		hmac = params[:hmac]
@@ -46,7 +58,6 @@ class WebhooksController < ApplicationController
 	end
 
 	def shipping_rates
-		# binding.pry
 		response = {
 			"rates": 
 			[
@@ -70,7 +81,6 @@ class WebhooksController < ApplicationController
 	end
 
 	def app_uninstalled
-		# binding.pry
 		shop = params[:name] + ".myshopify.com"
 		@shop = ShopifyStore.find_by_name(shop)
 		puts shop, @shop
@@ -176,7 +186,7 @@ class WebhooksController < ApplicationController
 	end
 
 	def authorize hmac
-		hash = params.reject{|key, value| key == 'hmac' || key == 'controller' || key == 'action'}
+		hash = params.except(:hmac, :controller, :action)
 		query = URI.escape(hash.sort.map{|key, value| "#{key}=#{value}"}.join('&'))
 		digest = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), API_SECRET_KEY, query)
 		

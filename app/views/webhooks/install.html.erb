@@ -1,1 +1,8 @@
 <h1>Hello <%= @shop.name %></h1>
+<% @orders.each do |order| %>
+	<div>
+		<%= order.name %>
+		Order Cost <%= order.subtotal_price %>
+		Approx. Shipping Cost <%= (order.total_price.to_f - order.subtotal_price.to_f).round(2) %>
+	</div>
+<% end %>

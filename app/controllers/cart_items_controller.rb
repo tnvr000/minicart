@@ -23,7 +23,6 @@ class CartItemsController < ApplicationController
 	end
 
 	def change_quantity
-		# binding.pry
 		@cart_item = current_user.cart.cart_items.find_by(id: params[:id])
 		unless @cart_item.nil?
 			quantity = update_qunatity(@cart_item)

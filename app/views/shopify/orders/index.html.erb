@@ -1,0 +1,9 @@
+<%= link_to "Back", shopify_shop_path(@shop), class: "btn btn-info" %><br>
+<br>
+<% @orders.each do |order| %>
+	<div>
+		<%= link_to order.name, shopify_shop_order_path(@shop, order.id.to_i) %>
+		order cost = <%= order.subtotal_price %>
+		Expected Shipment cost = <%= (order.total_price.to_f - order.subtotal_price.to_f).round(2) %>
+	</div>
+<% end %>

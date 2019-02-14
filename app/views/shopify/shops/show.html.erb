@@ -1,0 +1,4 @@
+<h1>Hello <%= @current_shop.shop_owner %></h1>
+<div>
+	see <%= link_to "Orders", shopify_shop_orders_path(@shop) %></div>
+<div>see <%= link_to "Products", shopify_shop_products_path(@shop) %></div>
