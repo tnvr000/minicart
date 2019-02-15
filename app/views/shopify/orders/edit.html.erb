@@ -1,0 +1,14 @@
+<%= link_to "Back", shopify_shop_orders_path(@shop), class: "btn btn-info" %>
+<%= form_tag({controller: 'shopify/orders', action: 'update'}, method: :put) do %>
+	<h2><%= @order.name %></h2>
+	<h4><%= "Dimnesion" %></h4>
+	<% @metafields.each do |metafield| %>
+		<div>
+			<%= label_tag "#{metafield.key}" %>
+			<%= text_field_tag "metafields[#{metafield.key}]", metafield.value %>
+		</div>
+	<% end %>
+	<div>
+		<%= submit_tag "Save" %>
+	</div>
+<% end %>

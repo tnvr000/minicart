@@ -1,4 +1,6 @@
-<%= link_to "Back", shopify_shop_orders_path(@shop), class: "btn btn-info" %><br>
+<%= link_to "Back", shopify_shop_orders_path(@shop), class: "btn btn-info" %>
+<%= link_to "Edit", edit_shopify_shop_order_path(@shop, @order) %>
+<br>
 <div>
 	<%= @order.name %> <%= @order.subtotal_price %><br>
 	Expected Shipping Cost
