@@ -2,16 +2,21 @@ class Shopify::OrdersController < Shopify::MainController
 	before_action :shopify_session
 	def index
 		@orders = ShopifyAPI::Order.find(:all)
+	rescue SocketError => e
+		retry
 	end
 
 	def show
 		@order = ShopifyAPI::Order.find(params[:id].to_i)
+	rescue SocketError => e
+		retry
 	end
 
 	def edit
 		@order = ShopifyAPI::Order.find(params[:id].to_i)
 		@metafields = metafields
-		# binding.pry
+	rescue SocketError => e
+		retry
 	end
 
 	def update

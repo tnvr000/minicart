@@ -1,8 +1,28 @@
 <script type="text/javascript">
-	ShopifyApp.Bar.loadingOn()
-	window.onload = function () {
-		ShopifyApp.Bar.loadingOff()
-	}
+	ShopifyApp.ready(function() {
+		ShopifyApp.Bar.initialize({
+			title: 'Minicart',
+			buttons: {
+				secondary: 
+				[
+					{
+						label: 'Back',
+						href: '<%= shopify_shop_products_path(@shop) %>',
+						target: 'app'
+					},
+					{
+						label: 'Orders',
+						href: '<%= shopify_shop_orders_path(@shop) %>',
+						target: 'app'
+					},
+					{
+						label: 'Products',
+						href: '<%= shopify_shop_products_path(@shop) %>',
+						target: 'app'
+					}
+				]
+			}
+		});
+	});
 </script>
-<%= link_to "Back", shopify_shop_products_path(@shop), class: "btn btn-info" %>
 <%= @product.title %>

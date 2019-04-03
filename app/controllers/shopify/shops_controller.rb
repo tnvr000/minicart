@@ -28,6 +28,8 @@ class Shopify::ShopsController < Shopify::MainController
 		@shop = Shop.find_by_id params[:id]
 		shopify_session = get_shopify_session
 		@current_shop = shopify_session.shop
+	rescue SocketError => e
+		retry
 	end
 
 	private

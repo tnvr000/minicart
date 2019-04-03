@@ -1,4 +1,30 @@
-<%= link_to "Back", shopify_shop_orders_path(@shop), class: "btn btn-info" %>
+<script type="text/javascript">
+	ShopifyApp.ready(function() {
+		ShopifyApp.Bar.initialize({
+			title: 'Minicart',
+			buttons: {
+				secondary: 
+				[
+					{
+						label: 'Back',
+						href: '<%= shopify_shop_orders_path(@shop) %>',
+						target: 'app'
+					},
+					{
+						label: 'Orders',
+						href: '<%= shopify_shop_orders_path(@shop) %>',
+						target: 'app'
+					},
+					{
+						label: 'Products',
+						href: '<%= shopify_shop_products_path(@shop) %>',
+						target: 'app'
+					}
+				]
+			}
+		});
+	});
+</script>
 <%= link_to "Edit", edit_shopify_shop_order_path(@shop, @order) %>
 <br>
 <div>
