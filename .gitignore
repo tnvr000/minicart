@@ -17,3 +17,6 @@
 /tmp
 
 /public/system/images/*
+
+# ignore rough files
+/rough.md
